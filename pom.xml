@@ -38,6 +38,12 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>de.saschadoemer.agrirouter</groupId>
+                <artifactId>protobuf-decoder</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
                 <version>${protobuf-java.version}</version>

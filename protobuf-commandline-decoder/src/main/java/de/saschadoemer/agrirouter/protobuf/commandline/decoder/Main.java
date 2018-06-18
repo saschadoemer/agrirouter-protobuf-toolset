@@ -1,5 +1,7 @@
 package de.saschadoemer.agrirouter.protobuf.commandline.decoder;
 
+import de.saschadoemer.agrirouter.protobuf.commandline.decoder.handler.PasteInputHandler;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -10,17 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
         printWelcomeTitle();
-        printInputOptions();
-        int choice = readInputOption();
-        switch (choice) {
-            case 0:
-                exit();
-            case 1:
-                System.out.println("Currently not supported. Programm will end.");
-                exit();
-            case 2:
-                System.out.println("Currently not supported. Programm will end.");
-                exit();
+        //noinspection InfiniteLoopStatement
+        while(true) {
+            printInputOptions();
+            int choice = readInputOption();
+            switch (choice) {
+                case 0:
+                    exit();
+                case 1:
+                    PasteInputHandler pasteInputHandler = new PasteInputHandler();
+                    pasteInputHandler.handle();
+            }
         }
     }
 
@@ -33,9 +35,7 @@ public class Main {
     }
 
     private static void printInputOptions() {
-        System.out.println("Please select a valid option.");
-        System.out.println("[1] Select input file.");
-        System.out.println("[2] Paste input.");
+        System.out.println("[1] Paste input.");
         System.out.println("[0] Quit.");
     }
 
