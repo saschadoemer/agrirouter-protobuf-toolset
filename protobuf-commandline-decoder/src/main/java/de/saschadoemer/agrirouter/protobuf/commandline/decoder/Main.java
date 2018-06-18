@@ -1,4 +1,4 @@
-package de.saschadoemer.agrirouter.commandline.decoder;
+package de.saschadoemer.agrirouter.protobuf.commandline.decoder;
 
 import java.util.Arrays;
 import java.util.Scanner;
