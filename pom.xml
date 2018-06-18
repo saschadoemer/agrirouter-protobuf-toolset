@@ -10,12 +10,23 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>agrirouter-protobuf-definitions/</module>    
+        <module>protobuf-definitions/</module>
+        <module>protobuf-commandline-decoder</module>
     </modules>
 
     <properties>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.saschadoemer.agrirouter</groupId>
+                <artifactId>protobuf-definitions</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
