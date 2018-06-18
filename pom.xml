@@ -12,6 +12,7 @@
     <modules>
         <module>protobuf-definitions/</module>
         <module>protobuf-commandline-decoder</module>
+        <module>protobuf-decoder</module>
     </modules>
 
     <properties>
