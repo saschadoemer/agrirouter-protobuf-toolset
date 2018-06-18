@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>AGRIROUTER - Protobuf Toolset</name>
+    <name>AGRIROUTER - PROTOBUF TOOLSET</name>
     <groupId>de.saschadoemer.agrirouter</groupId>
     <artifactId>protobuf-toolset</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -16,11 +16,14 @@
     </modules>
 
     <properties>
+        <protobuf-java.version>3.5.1</protobuf-java.version>
+
         <!-- PLUGINS -->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <protoc-jar-maven-plugin.version>3.5.1.1</protoc-jar-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -29,6 +32,11 @@
                 <groupId>de.saschadoemer.agrirouter</groupId>
                 <artifactId>protobuf-definitions</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf-java.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,10 +1,21 @@
 package de.saschadoemer.agrirouter.protobuf.decoder.impl;
 
+import agrirouter.commons.MessageOuterClass;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import de.saschadoemer.agrirouter.protobuf.decoder.Decoder;
 
-public class MessageDecoder implements Decoder {
+import java.util.Optional;
 
-    public String decode(String utf8) {
-        throw new RuntimeException("Not yet implemented.");
+public class MessageOuterClassDecoder implements Decoder {
+
+    public Optional<String> safeDecode(String utf8) {
+        try {
+            MessageOuterClass.Message message = MessageOuterClass.Message.parseFrom(ByteString.copyFromUtf8(utf8));
+            Json
+        } catch (InvalidProtocolBufferException e) {
+            // NOP
+        }
+        return Optional.empty();
     }
 }
