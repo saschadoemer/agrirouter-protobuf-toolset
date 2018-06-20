@@ -19,3 +19,10 @@ This project contains a simple toolset for working with the agrirouter protobuf 
 ### How to support the project?
 
 You like the work I am doing, feel free to [buy me a coffee](buymeacoff.ee/ks0iWGZlR).
+
+### Development setup
+
+* Clone the repository using SSH, see [gist for further information](https://gist.github.com/developius/c81f021eb5c5916013dc) how to setup SSH.
+* Import Maven project into IDE of your choice.
+* Generate sources using `mvn clean package`.
+
