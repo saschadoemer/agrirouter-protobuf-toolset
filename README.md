@@ -18,7 +18,7 @@ This project contains a simple toolset for working with the agrirouter protobuf 
 
 ### How to support the project?
 
-You like the work I am doing, feel free to [buy me a coffee](buymeacoff.ee/ks0iWGZlR).
+If you like the work we are doing, feel free to [buy us a coffee](buymeacoff.ee/ks0iWGZlR).
 
 ### Development setup
 
