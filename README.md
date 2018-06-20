@@ -1,5 +1,14 @@
 # agrirouter-protobuf-toolset
 
+## Build status
+
+* ![Build status for master](https://travis-ci.com/saschadoemer/masterjigs.svg?token=fGmM42PoYQ9sywqUX4Rz&branch=master) | `master`
+* ![Build status for develop](https://travis-ci.com/saschadoemer/masterjigs.svg?token=fGmM42PoYQ9sywqUX4Rz&branch=develop) | `develop`
+
+## Quality status
+
+* [Code Quality](https://app.codacy.com/project/cf4thqgxcnxaovouxtnv/agrirouter-protobuf-toolset/dashboard)
+
 ## Project description
 
 ### The agrirouter?
