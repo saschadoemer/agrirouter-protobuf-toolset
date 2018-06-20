@@ -19,9 +19,13 @@ public class Main {
             switch (choice) {
                 case 0:
                     exit();
+                    break;
                 case 1:
                     PasteInputHandler pasteInputHandler = new PasteInputHandler();
                     pasteInputHandler.handle();
+                    break;
+                default:
+                    throw new RuntimeException("Invalid option selected.");
             }
         }
     }
@@ -56,7 +60,6 @@ public class Main {
         System.out.println("* AGRIROUTER TOOLSET / Feel free to buy me a coffee [buymeacoff.ee/ks0iWGZlR] ;-)");
         System.out.println("*");
         System.out.println("************************************************************************************");
-        System.exit(0);
     }
 
 }
