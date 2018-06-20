@@ -25,7 +25,7 @@ public class Main {
                     pasteInputHandler.handle();
                     break;
                 default:
-                    throw new RuntimeException("Invalid option selected.");
+                    throw new IllegalArgumentException("Invalid option selected.");
             }
         }
     }
