@@ -15,8 +15,8 @@ public class MessagesDecoder implements Decoder, JsonFormatPrinterProvider {
     public Optional<String> safeDecode(String base64EncodedValue) {
         try {
             ByteArrayInputStream inputStream = this.decodeFromBase64(base64EncodedValue);
-            agrirouter.response.Response.ResponseEnvelope responseEnvelope = agrirouter.response.Response.ResponseEnvelope.parseDelimitedFrom(inputStream);
-            agrirouter.response.Response.ResponsePayloadWrapper responsePayloadWrapper = agrirouter.response.Response.ResponsePayloadWrapper.parseDelimitedFrom(inputStream);
+            Response.ResponseEnvelope responseEnvelope = Response.ResponseEnvelope.parseDelimitedFrom(inputStream);
+            Response.ResponsePayloadWrapper responsePayloadWrapper = Response.ResponsePayloadWrapper.parseDelimitedFrom(inputStream);
             return Optional.of(this.createOutput(responseEnvelope, responsePayloadWrapper).toString());
         } catch (IOException e) {
             throw new CouldNotDecodeProtobufException(e);
