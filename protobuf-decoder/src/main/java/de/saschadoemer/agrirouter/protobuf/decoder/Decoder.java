@@ -23,9 +23,10 @@ public interface Decoder {
 
     default String addMissingPrefixIfNecessary(String typeUrl) {
         String[] parts = typeUrl.split("/");
+        String typeUrlWithPrefix = typeUrl;
         if (parts.length == 1) {
-            typeUrl = "types.agrirouter/" + typeUrl;
+            typeUrlWithPrefix = "types.agrirouter/" + typeUrl;
         }
-        return typeUrl;
+        return typeUrlWithPrefix;
     }
 }
