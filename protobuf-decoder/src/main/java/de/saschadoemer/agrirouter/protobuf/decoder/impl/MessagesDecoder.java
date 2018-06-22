@@ -25,7 +25,7 @@ public class MessagesDecoder implements Decoder, JsonFormatPrinterProvider {
 
             return Optional.of(this.createOutput(responseEnvelope.build(), responsePayloadWrapper.build()).toString());
         } catch (IOException e) {
-            throw new CouldNotDecodeProtobufException(e);
+            throw new CouldNotDecodeProtobufException(base64EncodedValue, e);
         }
     }
 
