@@ -20,4 +20,13 @@ public interface Decoder {
         byte[] decodedBytes = Base64.getDecoder().decode(base64EncodedValue);
         return new ByteArrayInputStream(decodedBytes);
     }
+
+    default String addMissingPrefixIfNecessary(String typeUrl) {
+        String[] parts = typeUrl.split("/");
+        String typeUrlWithPrefix = typeUrl;
+        if (parts.length == 1) {
+            typeUrlWithPrefix = "types.agrirouter/" + typeUrl;
+        }
+        return typeUrlWithPrefix;
+    }
 }

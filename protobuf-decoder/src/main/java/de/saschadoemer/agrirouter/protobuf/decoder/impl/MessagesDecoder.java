@@ -1,6 +1,7 @@
 package de.saschadoemer.agrirouter.protobuf.decoder.impl;
 
 import agrirouter.response.Response;
+import com.google.protobuf.Any;
 import com.google.protobuf.util.JsonFormat;
 import de.saschadoemer.agrirouter.protobuf.decoder.Decoder;
 import de.saschadoemer.agrirouter.protobuf.decoder.JsonFormatPrinterProvider;
@@ -15,11 +16,16 @@ public class MessagesDecoder implements Decoder, JsonFormatPrinterProvider {
     public Optional<String> safeDecode(String base64EncodedValue) {
         try {
             ByteArrayInputStream inputStream = this.decodeFromBase64(base64EncodedValue);
-            Response.ResponseEnvelope responseEnvelope = Response.ResponseEnvelope.parseDelimitedFrom(inputStream);
-            Response.ResponsePayloadWrapper responsePayloadWrapper = Response.ResponsePayloadWrapper.parseDelimitedFrom(inputStream);
-            return Optional.of(this.createOutput(responseEnvelope, responsePayloadWrapper).toString());
+            Response.ResponseEnvelope.Builder responseEnvelope = Response.ResponseEnvelope.parseDelimitedFrom(inputStream).toBuilder();
+
+            Response.ResponsePayloadWrapper.Builder responsePayloadWrapper = Response.ResponsePayloadWrapper.parseDelimitedFrom(inputStream).toBuilder();
+            Any.Builder any = responsePayloadWrapper.getDetails().toBuilder();
+            any.setTypeUrl(this.addMissingPrefixIfNecessary(any.getTypeUrl()));
+            responsePayloadWrapper.setDetails(any.build());
+
+            return Optional.of(this.createOutput(responseEnvelope.build(), responsePayloadWrapper.build()).toString());
         } catch (IOException e) {
-            throw new CouldNotDecodeProtobufException(e);
+            throw new CouldNotDecodeProtobufException(base64EncodedValue, e);
         }
     }
 
