@@ -1,7 +1,5 @@
 package de.saschadoemer.agrirouter.protobuf.decoder;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import java.io.ByteArrayInputStream;
 import java.util.Base64;
 import java.util.Optional;
