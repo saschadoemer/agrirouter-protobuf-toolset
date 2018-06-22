@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-class MessagesDecoderTest {
+class AckWithMessagesMessageDecoderTest {
 
     @Test
-    void givenValidInputDecodeMessageOutClassShouldReturnFormattedJson() {
+    void givenValidInput_bDecodeMessage_ShouldReturnFormattedJson() {
         String validInput = "XwjMARACGiQ3YzA2OTZiMy0yODgwLTQxOTUtYjBjNy01NzUxOGI3MWQ5NzYiJDUxOTJiMWJhLWU4OTQtNGIwZC04NGEx" +
                 "LWVkYjU2NWUwYzRkNCoMCPy5n9kFEIDxlaEBeAp2CjB0eXBlcy5hZ3Jpcm91dGVyLmNvbS9hZ3Jpcm91dGVyLmNvbW1vbnMu" +
                 "TWVzc2FnZXMSQgpACjJObyBkYXRhIGlzIGN1cnJlbnRseSBhdmFpbGFibGUgZm9yIHJlcXVlc3Rl" +
