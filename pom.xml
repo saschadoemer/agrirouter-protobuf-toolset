@@ -9,6 +9,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <scm>
+        <connection>scm:git:git:github.com/saschadoemer/agrirouter-protobuf-toolset.git</connection>
+        <developerConnection>scm:git:git@github.com:saschadoemer/agrirouter-protobuf-toolset.git</developerConnection>
+        <url>http://github.com/saschadoemer/agrirouter-protobuf-toolset</url>
+    </scm>
+
     <modules>
         <module>protobuf-definitions/</module>
         <module>protobuf-commandline-decoder</module>
