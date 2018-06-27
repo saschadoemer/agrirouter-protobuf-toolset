@@ -1,13 +1,7 @@
 # agrirouter-protobuf-toolset
 
-## Build status
-
-* ![Build status for master](https://travis-ci.com/saschadoemer/masterjigs.svg?token=fGmM42PoYQ9sywqUX4Rz&branch=master) | `master`
-* ![Build status for develop](https://travis-ci.com/saschadoemer/agrirouter-protobuf-toolset.svg?branch=develop) | `develop`
-
-## Quality status
-
-* [Code Quality](https://app.codacy.com/project/cf4thqgxcnxaovouxtnv/agrirouter-protobuf-toolset/dashboard)
+[![Build status for develop](https://travis-ci.org/saschadoemer/agrirouter-protobuf-toolset.svg?branch=develop)](https://travis-ci.org/saschadoemer/agrirouter-protobuf-toolset)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f2f2fb0c18b47b983e2144ff3ebd95c)](https://www.codacy.com/app/cf4thqgxcnxaovouxtnv/agrirouter-protobuf-toolset?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=saschadoemer/agrirouter-protobuf-toolset&amp;utm_campaign=Badge_Grade)
 
 ## Project description
 
@@ -19,19 +13,24 @@ As a universal data exchange platform, agrirouter fills a gap on the way to Farm
 
 ### The current project you're looking at?
 
-This project contains a simple toolset for working with the agrirouter protobuf files to ensure easy development, testing and debugging. At this point the project will include:
+This project contains a simple toolset for working with the agrirouter protobuf files to ensure easy development, testing and debugging. At this point the project will include sub projects with different approaches.
 
-* ...a command line client to encode, decode and validate Protobuf using the given types the AR supports.
-* ...a web service implementation which can be run as a Spring Boot JAR with the same functionality as the command line client.
-* ...a rich client interface with the same functionality as the command line client.
+#### Command line client
+
+The command line client is able to encode, decode and validate Protobuf using the given types the AR supports. Decoding will be Protobuf to JSON for better readability. Encoding will be JSON to Protobuf, validation will be performed on given Protobuf.
+
+#### Rich client interface 
+
+-- TBD --
+
+#### Web service implementation
+
+-- TBD --
+
+### Missing something? Something is broken?
+
+Feel free to file a feature request or a bug using the issue tracker.
 
 ### How to support the project?
 
 If you like the work we are doing, feel free to [buy us a coffee](buymeacoff.ee/ks0iWGZlR).
-
-### Development setup
-
-* Clone the repository using SSH, see [gist for further information](https://gist.github.com/developius/c81f021eb5c5916013dc) how to setup SSH.
-* Import Maven project into IDE of your choice.
-* Generate sources using `mvn clean package`.
-
