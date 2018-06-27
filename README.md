@@ -1,5 +1,7 @@
 # agrirouter-protobuf-toolset
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6f3af79c142f46a2b9fa3830664e455a)](https://app.codacy.com/app/cf4thqgxcnxaovouxtnv/agrirouter-protobuf-toolset?utm_source=github.com&utm_medium=referral&utm_content=saschadoemer/agrirouter-protobuf-toolset&utm_campaign=badger)
+
 ## Build status
 
 * ![Build status for master](https://travis-ci.com/saschadoemer/masterjigs.svg?token=fGmM42PoYQ9sywqUX4Rz&branch=master) | `master`
