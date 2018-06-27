@@ -12,13 +12,14 @@ public class Main {
 
     public static void main(String[] args) {
         printWelcomeTitle();
-        //noinspection InfiniteLoopStatement
-        while(true) {
+        boolean doNotLeaveApplication = true;
+        while (doNotLeaveApplication) {
             printInputOptions();
             int choice = readInputOption();
             switch (choice) {
                 case 0:
                     exit();
+                    doNotLeaveApplication = false;
                     break;
                 case 1:
                     PasteInputHandler pasteInputHandler = new PasteInputHandler();
@@ -57,7 +58,7 @@ public class Main {
         System.out.println("************************************************************************************");
         System.out.println("*");
         System.out.println("* AGRIROUTER TOOLSET / Thank you for using the decoder.");
-        System.out.println("* AGRIROUTER TOOLSET / Feel free to buy me a coffee [buymeacoff.ee/ks0iWGZlR] ;-)");
+        System.out.println("* AGRIROUTER TOOLSET / Feel free to buy us a coffee [buymeacoff.ee/ks0iWGZlR] ;-)");
         System.out.println("*");
         System.out.println("************************************************************************************");
     }
