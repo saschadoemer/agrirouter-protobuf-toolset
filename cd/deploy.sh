@@ -6,3 +6,4 @@ fi
 if [ "$TRAVIS_BRANCH" = 'develop' ] && [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
     mvn deploy -P build-extras --settings cd/mavensettings.xml
 fi
+
