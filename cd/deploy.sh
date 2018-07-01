@@ -7,4 +7,4 @@
 #    mvn deploy -P build-extras --settings cd/mavensettings.xml
 #fi
 
-mvn deploy -P build-extras --settings cd/mavensettings.xml
+mvn deploy -P -X build-extras --settings cd/mavensettings.xml
