@@ -1,6 +1,5 @@
 package de.saschadoemer.agrirouter.protobuf.client.javafx;
 
-import de.saschadoemer.agrirouter.protobuf.client.javafx.ui.DecodingPane;
 import de.saschadoemer.agrirouter.protobuf.client.javafx.ui.MainPane;
 import javafx.application.Application;
 import javafx.scene.Scene;

@@ -22,6 +22,6 @@ public class MainPane extends TabPane implements StandardComponent {
 
     @Override
     public void initProperties() {
-
+        // NOP
     }
 }
