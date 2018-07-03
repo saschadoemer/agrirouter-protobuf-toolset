@@ -3,7 +3,7 @@ package de.saschadoemer.agrirouter.protobuf.client.commandline.handler;
 import de.saschadoemer.agrirouter.protobuf.client.commandline.helper.ErrorPrinter;
 import de.saschadoemer.agrirouter.protobuf.client.commandline.helper.ResultPrinter;
 import de.saschadoemer.agrirouter.protobuf.decoder.Decoder;
-import de.saschadoemer.agrirouter.protobuf.decoder.impl.MessagesDecoder;
+import de.saschadoemer.agrirouter.protobuf.decoder.impl.MessageDecoder;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -20,7 +20,7 @@ public class PasteInputHandler {
 
     public void handle() {
         String base64EncodedValue = this.readInput();
-        Decoder decoder = new MessagesDecoder();
+        Decoder decoder = new MessageDecoder();
         Optional<String> decodedMessage = decoder.safeDecode(base64EncodedValue);
         if (decodedMessage.isPresent()) {
             this.resultPrinter.print(decodedMessage.get());

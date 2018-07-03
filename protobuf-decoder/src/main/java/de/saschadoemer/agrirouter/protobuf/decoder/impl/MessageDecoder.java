@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Optional;
 
-public class MessagesDecoder implements Decoder, JsonFormatPrinterProvider {
+public class MessageDecoder implements Decoder, JsonFormatPrinterProvider {
 
     public Optional<String> safeDecode(String base64EncodedValue) {
         try {
