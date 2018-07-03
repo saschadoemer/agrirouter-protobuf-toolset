@@ -10,20 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>AGRIROUTER - PROTOBUF TOOLSET - Decoder</name>
-    <artifactId>protobuf-decoder</artifactId>
+    <artifactId>protobuf-encoder</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>de.saschadoemer.agrirouter</groupId>
             <artifactId>protobuf-definitions</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter</groupId>
-            <artifactId>protobuf-encoder</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter</groupId>
-            <artifactId>protobuf-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>

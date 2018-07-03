@@ -39,7 +39,7 @@ public class EncodeMessagePane extends DefaultGridPane {
         outputArea.textProperty().bindBidirectional(this.outputProperty);
         this.add(outputArea, 1, 1);
 
-        Button decodeMessageButton = new Button("encode message");
+        Button decodeMessageButton = new Button("Encode message");
         decodeMessageButton.setOnAction(event -> {
             decoder.safeDecode(this.inputProperty.get()).ifPresent(this.outputProperty::set);
         });

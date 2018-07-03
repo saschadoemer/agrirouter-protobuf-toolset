@@ -45,6 +45,8 @@
         <module>protobuf-client-commandline</module>
         <module>protobuf-client-javafx</module>
         <module>protobuf-decoder</module>
+        <module>protobuf-encoder</module>
+        <module>protobuf-api</module>
     </modules>
 
     <properties>
@@ -82,6 +84,16 @@
             <dependency>
                 <groupId>de.saschadoemer.agrirouter</groupId>
                 <artifactId>protobuf-decoder</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.saschadoemer.agrirouter</groupId>
+                <artifactId>protobuf-encoder</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.saschadoemer.agrirouter</groupId>
+                <artifactId>protobuf-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
