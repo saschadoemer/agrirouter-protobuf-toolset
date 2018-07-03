@@ -37,4 +37,18 @@ Feel free to file a feature request or a bug using the issue tracker.
 
 ### How to support the project?
 
-If you like the work we are doing, feel free to [buy us a coffee](buymeacoff.ee/ks0iWGZlR).
+If you like the work we are doing, feel free to [buy us a coffee](buymeacoff.ee/ks0iWGZlR). We're open for any kind of contribution, feel free to file issues, feature requests or anything else.
+
+# Development
+
+## Custom maven settings
+
+To run code coverage add the following snippet to your `.m2/settings.xml`.
+
+```xml    
+<pluginGroups>
+    <pluginGroup>org.openclover</pluginGroup>
+</pluginGroups>
+```
+
+This enables the much short usage of `mvn clean clover:setup test clover:aggregate clover:clover` to generate the coverage reports. 
