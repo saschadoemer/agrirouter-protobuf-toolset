@@ -68,6 +68,7 @@
         <maven-compiler-plugin.source>9</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>9</maven-compiler-plugin.target>
         <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
+        <clover-maven-plugin.version>4.2.1</clover-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -183,6 +184,11 @@
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openclover</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>${clover-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
