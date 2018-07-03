@@ -42,7 +42,8 @@
 
     <modules>
         <module>protobuf-definitions/</module>
-        <module>protobuf-commandline-decoder</module>
+        <module>protobuf-client-commandline</module>
+        <module>protobuf-client-javafx</module>
         <module>protobuf-decoder</module>
     </modules>
 

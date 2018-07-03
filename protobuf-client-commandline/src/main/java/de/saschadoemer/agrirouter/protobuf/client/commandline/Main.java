@@ -1,6 +1,6 @@
-package de.saschadoemer.agrirouter.protobuf.commandline.decoder;
+package de.saschadoemer.agrirouter.protobuf.client.commandline;
 
-import de.saschadoemer.agrirouter.protobuf.commandline.decoder.handler.PasteInputHandler;
+import de.saschadoemer.agrirouter.protobuf.client.commandline.handler.PasteInputHandler;
 
 import java.util.Arrays;
 import java.util.Scanner;

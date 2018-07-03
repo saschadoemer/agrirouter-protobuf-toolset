@@ -1,7 +1,7 @@
-package de.saschadoemer.agrirouter.protobuf.commandline.decoder.handler;
+package de.saschadoemer.agrirouter.protobuf.client.commandline.handler;
 
-import de.saschadoemer.agrirouter.protobuf.commandline.decoder.helper.ErrorPrinter;
-import de.saschadoemer.agrirouter.protobuf.commandline.decoder.helper.ResultPrinter;
+import de.saschadoemer.agrirouter.protobuf.client.commandline.helper.ErrorPrinter;
+import de.saschadoemer.agrirouter.protobuf.client.commandline.helper.ResultPrinter;
 import de.saschadoemer.agrirouter.protobuf.decoder.Decoder;
 import de.saschadoemer.agrirouter.protobuf.decoder.impl.MessagesDecoder;
 

@@ -1,4 +1,4 @@
-package de.saschadoemer.agrirouter.protobuf.commandline.decoder.helper;
+package de.saschadoemer.agrirouter.protobuf.client.commandline.helper;
 
 public class ErrorPrinter {
 
