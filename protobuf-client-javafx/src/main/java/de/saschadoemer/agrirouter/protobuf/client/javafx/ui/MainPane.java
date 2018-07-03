@@ -12,17 +12,17 @@ public class MainPane extends TabPane implements StandardComponent {
 
     @Override
     public void initComponents() {
-        Tab encodingTab= new Tab();
-        encodingTab.setText("Encoding");
-        encodingTab.setContent(new DecodeMessagePane());
+        Tab encodingTab = new Tab();
+        encodingTab.setText("Encode (Capabilities) ");
+        encodingTab.setContent(new EncodeCapabilitiesPaneWith());
         encodingTab.setClosable(false);
 
         Tab decodingTab = new Tab();
-        decodingTab.setText("Decoding");
+        decodingTab.setText("Decode (Base64)");
         decodingTab.setContent(new DecodeMessagePane());
         decodingTab.setClosable(false);
 
-        this.getTabs().addAll(decodingTab);
+        this.getTabs().addAll(encodingTab, decodingTab);
     }
 
     @Override

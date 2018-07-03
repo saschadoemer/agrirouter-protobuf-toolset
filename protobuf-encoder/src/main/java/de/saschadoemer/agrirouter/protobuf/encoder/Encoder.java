@@ -11,6 +11,6 @@ public interface Encoder {
      *
      * @return JSON
      */
-    Optional<ByteString> safeEncode(String json);
+    Optional<String> safeEncode(String json);
 
 }
