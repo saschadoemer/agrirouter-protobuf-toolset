@@ -44,15 +44,15 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
 
     @Override
     public void initComponents() {
-        this.add(new Label("[Header] Application Message ID"), 0, 0);
-        this.add(new Label("[Header] Application Message SeqNo"), 0, 1);
-        this.add(new Label("[Header] Technical Message Type"), 0, 2);
-        this.add(new Label("[Header] Team Set Context ID"), 0, 3);
-        this.add(new Label("[Header] Mode"), 0, 4);
-        this.add(new Label("[Header] Timestamp - Seconds"), 0, 5);
-        this.add(new Label("[Header] Timestamp - Nanos"), 0, 6);
-        this.add(new Label("[Content] Message Content"), 0, 7);
-        this.add(new Label("[Message] Base64 Encoded Message "), 0, 8);
+        this.add(new Label("Application Message ID"), 0, 0);
+        this.add(new Label("Application Message SeqNo"), 0, 1);
+        this.add(new Label("Technical Message Type"), 0, 2);
+        this.add(new Label("Team Set Context ID"), 0, 3);
+        this.add(new Label("Mode"), 0, 4);
+        this.add(new Label("Timestamp - Seconds"), 0, 5);
+        this.add(new Label("Timestamp - Nanos"), 0, 6);
+        this.add(new Label("Message Content"), 0, 7);
+        this.add(new Label("Base64 Encoded Message "), 0, 8);
 
         this.add(this.createTextField(this.applicationMessageIdInputProperty), 1, 0);
         this.add(this.createTextField(this.applicationMessageSeqNoProperty), 1, 1);
@@ -85,6 +85,11 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
         this.add(encodeMessageButton, 0, 9);
     }
 
+    private void updateTimestampProperties() {
+        this.timestampSecondsInputProperty.set(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond()));
+        this.timestampNanosInputProperty.set(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).getNano()));
+    }
+
     private Request.RequestPayloadWrapper encodeRequestPayloadWrapper() {
         Request.RequestPayloadWrapper.Builder requestPayloadWrapperBuilder = Request.RequestPayloadWrapper.newBuilder();
         Any.Builder any = Any.newBuilder();
@@ -93,6 +98,8 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
         requestPayloadWrapperBuilder.setDetails(any);
         return requestPayloadWrapperBuilder.build();
     }
+
+    protected abstract Optional<Message> encodeMessage();
 
     private TextArea createTextArea(Property<String> inputProperty) {
         TextArea textArea = new TextArea();
@@ -122,13 +129,11 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
         return requestEnvelope.build();
     }
 
-    protected abstract Optional<Message> encodeMessage();
-
     @Override
     public void initProperties() {
         this.applicationMessageIdInputProperty = new SimpleStringProperty(UUID.generate());
         this.applicationMessageSeqNoProperty = new SimpleStringProperty("1");
-        this.technicalMessageTypeInputProperty = new SimpleStringProperty("dke:capabilities");
+        this.technicalMessageTypeInputProperty = new SimpleStringProperty(this.getTechnicalMessageType());
         this.teamSetContextIdInputProperty = new SimpleStringProperty(BLANK);
         this.modeInputProperty = new SimpleStringProperty("0");
         this.timestampSecondsInputProperty = new SimpleStringProperty(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond()));
@@ -139,9 +144,6 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
         this.messageAsBase64OutputProperty = new SimpleStringProperty();
     }
 
-    private void updateTimestampProperties() {
-        this.timestampSecondsInputProperty.set(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond()));
-        this.timestampNanosInputProperty.set(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).getNano()));
-    }
+    protected abstract String getTechnicalMessageType();
 
 }

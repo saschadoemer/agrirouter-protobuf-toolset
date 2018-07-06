@@ -14,4 +14,9 @@ public class EncodeCapabilitiesMessagePane extends EncodeMessageWithContentPane 
     protected Optional<Message> encodeMessage() {
         return this.capabilitiesMessageContentEncoder.encode(this.messageContentInputProperty.get());
     }
+
+    @Override
+    protected String getTechnicalMessageType() {
+        return "dke:capabilities";
+    }
 }
