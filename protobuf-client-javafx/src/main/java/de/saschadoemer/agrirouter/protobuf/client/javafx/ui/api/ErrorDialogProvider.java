@@ -1,4 +1,4 @@
-package de.saschadoemer.agrirouter.protobuf.client.javafx.ui.components;
+package de.saschadoemer.agrirouter.protobuf.client.javafx.ui.api;
 
 import javafx.scene.control.Alert;
 

@@ -1,6 +1,6 @@
 package de.saschadoemer.agrirouter.protobuf.client.javafx.ui;
 
-import de.saschadoemer.agrirouter.protobuf.client.javafx.ui.components.StandardComponent;
+import de.saschadoemer.agrirouter.protobuf.client.javafx.ui.api.StandardComponent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
