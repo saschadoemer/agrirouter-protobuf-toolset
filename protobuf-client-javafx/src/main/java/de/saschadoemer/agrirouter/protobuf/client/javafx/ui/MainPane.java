@@ -14,7 +14,7 @@ public class MainPane extends TabPane implements StandardComponent {
     public void initComponents() {
         Tab encodingTab = new Tab();
         encodingTab.setText("Encode (Capabilities) ");
-        encodingTab.setContent(new EncodeCapabilitiesPaneWith());
+        encodingTab.setContent(new EncodeCapabilitiesMessagePane());
         encodingTab.setClosable(false);
 
         Tab decodingTab = new Tab();

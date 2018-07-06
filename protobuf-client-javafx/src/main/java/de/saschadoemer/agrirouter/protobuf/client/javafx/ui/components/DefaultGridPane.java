@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 
-public abstract class DefaultGridPane extends GridPane implements StandardComponent  {
+public abstract class DefaultGridPane extends GridPane implements StandardComponent, ErrorDialogProvider  {
 
     protected DefaultGridPane() {
         this.setAlignment(Pos.CENTER);

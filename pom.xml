@@ -51,7 +51,7 @@
 
     <properties>
         <!-- FRAMEWORKS -->
-        <protobuf-java.version>3.5.1</protobuf-java.version>
+        <protobuf-java.version>3.6.0</protobuf-java.version>
         <junit-jupiter-api.version>5.0.2</junit-jupiter-api.version>
         <junit-platform-surefire-provider.version>1.0.2</junit-platform-surefire-provider.version>
 
@@ -66,6 +66,7 @@
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
         <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
 
         <!-- Configuration -->
         <maven-compiler-plugin.source>9</maven-compiler-plugin.source>
@@ -109,6 +110,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
                 <version>${junit-jupiter-api.version}</version>
@@ -122,6 +129,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

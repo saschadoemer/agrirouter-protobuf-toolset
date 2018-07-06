@@ -1,23 +1,40 @@
 package de.saschadoemer.agrirouter.protobuf.client.javafx.ui.components;
 
+import agrirouter.request.Request;
+import agrirouter.request.payload.endpoint.Capabilities;
+import com.google.protobuf.Any;
+import com.google.protobuf.Message;
+import com.google.protobuf.Timestamp;
+import de.saschadoemer.agrirouter.protobuf.api.exceptions.CouldNotEncodeProtobufException;
+import de.saschadoemer.agrirouter.protobuf.api.exceptions.UUID;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.UUID;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.util.Base64;
+import java.util.Optional;
 
 public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
 
-    protected SimpleStringProperty applicationMessageIdProperty;
-    protected SimpleStringProperty applicationMessageSeqNoProperty;
-    protected SimpleStringProperty technicalMessageTypeProperty;
-    protected SimpleStringProperty modeProperty;
+    private SimpleStringProperty applicationMessageIdInputProperty;
+    private SimpleStringProperty applicationMessageSeqNoProperty;
+    private SimpleStringProperty technicalMessageTypeInputProperty;
+    private SimpleStringProperty teamSetContextIdInputProperty;
+    private SimpleStringProperty modeInputProperty;
+    private SimpleStringProperty timestampSecondsInputProperty;
+    private SimpleStringProperty timestampNanosInputProperty;
 
     protected SimpleStringProperty messageContentInputProperty;
-    protected SimpleStringProperty messageContentOutputProperty;
-    protected SimpleStringProperty messageOutputProperty;
+
+    private SimpleStringProperty messageAsBase64OutputProperty;
 
 
     public EncodeMessageWithContentPane() {
@@ -27,90 +44,104 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
 
     @Override
     public void initComponents() {
-        Label applicationMessageIdLabel = new Label("Application Message Id");
-        this.add(applicationMessageIdLabel, 0, 0);
+        this.add(new Label("[Header] Application Message ID"), 0, 0);
+        this.add(new Label("[Header] Application Message SeqNo"), 0, 1);
+        this.add(new Label("[Header] Technical Message Type"), 0, 2);
+        this.add(new Label("[Header] Team Set Context ID"), 0, 3);
+        this.add(new Label("[Header] Mode"), 0, 4);
+        this.add(new Label("[Header] Timestamp - Seconds"), 0, 5);
+        this.add(new Label("[Header] Timestamp - Nanos"), 0, 6);
+        this.add(new Label("[Content] Message Content"), 0, 7);
+        this.add(new Label("[Message] Base64 Encoded Message "), 0, 8);
 
-        TextField applicationMessageIdTextField = new TextField();
-        this.applicationMessageIdProperty.set(UUID.randomUUID().toString());
-        applicationMessageIdTextField.textProperty().bindBidirectional(this.applicationMessageIdProperty);
-        applicationMessageIdTextField.setEditable(false);
-        this.add(applicationMessageIdTextField, 1, 0);
+        this.add(this.createTextField(this.applicationMessageIdInputProperty), 1, 0);
+        this.add(this.createTextField(this.applicationMessageSeqNoProperty), 1, 1);
+        this.add(this.createTextField(this.technicalMessageTypeInputProperty), 1, 2);
+        this.add(this.createTextField(this.teamSetContextIdInputProperty), 1, 3);
+        this.add(this.createTextField(this.modeInputProperty), 1, 4);
+        this.add(this.createTextField(this.timestampSecondsInputProperty), 1, 5);
+        this.add(this.createTextField(this.timestampNanosInputProperty), 1, 6);
+        this.add(this.createTextArea(this.messageContentInputProperty), 1, 7);
 
-        Label applicationMessageSeqNoLabel = new Label("Application Message SeqNo");
-        this.add(applicationMessageSeqNoLabel, 0, 1);
-
-        TextField applicationMessageSeqNoTextField = new TextField();
-        this.applicationMessageSeqNoProperty.set("1");
-        applicationMessageSeqNoTextField.textProperty().bindBidirectional(this.applicationMessageSeqNoProperty);
-        applicationMessageSeqNoTextField.setEditable(false);
-        this.add(applicationMessageSeqNoTextField, 1, 1);
-
-        Label technicalMessageTypeLabel = new Label("Technical Message Type");
-        this.add(technicalMessageTypeLabel, 0, 2);
-
-        TextField technicalMessageTypeTextField = new TextField();
-        this.technicalMessageTypeProperty.set("dke:capabilities");
-        technicalMessageTypeTextField.textProperty().bindBidirectional(this.technicalMessageTypeProperty);
-        technicalMessageTypeTextField.setEditable(false);
-        this.add(technicalMessageTypeTextField, 1, 2);
-
-        Label modeLabel = new Label("Mode");
-        this.add(modeLabel, 0, 3);
-
-        TextField modeTextField = new TextField();
-        modeProperty.set("0");
-        modeTextField.textProperty().bindBidirectional(this.modeProperty);
-        modeTextField.setEditable(false);
-        this.add(modeTextField, 1, 3);
-
-        Label inputLabel = new Label("Content (json):");
-        this.add(inputLabel, 0, 4);
-
-        TextArea inputArea = new TextArea();
-        inputArea.setWrapText(true);
-        inputArea.textProperty().bindBidirectional(this.messageContentInputProperty);
-        this.add(inputArea, 1, 4);
-
-        Label messageContentLabel = new Label("Content (base64):");
-        this.add(messageContentLabel, 0, 5);
-
-        TextField messageContentTextField = new TextField();
-        messageContentTextField.setEditable(false);
-        messageContentTextField.textProperty().bindBidirectional(this.messageContentOutputProperty);
-        this.add(messageContentTextField, 1, 5);
-
-        Label messageLabel = new Label("Message (base64):");
-        this.add(messageLabel, 0, 6);
-
-        TextField messageTextField = new TextField();
-        messageTextField.setEditable(false);
-        messageTextField.textProperty().bindBidirectional(this.messageOutputProperty);
-        this.add(messageTextField, 1, 6);
+        this.add(this.createTextField(this.messageAsBase64OutputProperty), 1, 8);
 
         Button encodeMessageButton = new Button("Encode message");
         encodeMessageButton.setOnAction(event -> {
-            this.defineOnAction();
+            this.messageAsBase64OutputProperty.set(BLANK);
+            this.updateTimestampProperties();
+            if (StringUtils.isNotBlank(this.messageContentInputProperty.get())) {
+                try (ByteArrayOutputStream streamedMessage = new ByteArrayOutputStream()) {
+                    Request.RequestEnvelope requestEnvelope = this.encodeRequestEnvelope();
+                    Request.RequestPayloadWrapper requestPayloadWrapperBuilder = this.encodeRequestPayloadWrapper();
+                    requestEnvelope.writeDelimitedTo(streamedMessage);
+                    requestPayloadWrapperBuilder.writeDelimitedTo(streamedMessage);
+                    this.messageAsBase64OutputProperty.set(Base64.getEncoder().encodeToString(streamedMessage.toByteArray()));
+                } catch (IOException | CouldNotEncodeProtobufException e) {
+                    this.error("Could not encode message.", e.getMessage());
+                }
+            }
         });
 
-        this.add(encodeMessageButton, 0, 7);
+        this.add(encodeMessageButton, 0, 9);
     }
 
-    protected abstract void defineOnAction();
+    private Request.RequestPayloadWrapper encodeRequestPayloadWrapper() {
+        Request.RequestPayloadWrapper.Builder requestPayloadWrapperBuilder = Request.RequestPayloadWrapper.newBuilder();
+        Any.Builder any = Any.newBuilder();
+        any.setTypeUrl(Capabilities.CapabilitySpecification.getDescriptor().getFullName());
+        this.encodeMessage().ifPresent(message -> any.setValue(message.toByteString()));
+        requestPayloadWrapperBuilder.setDetails(any);
+        return requestPayloadWrapperBuilder.build();
+    }
+
+    private TextArea createTextArea(Property<String> inputProperty) {
+        TextArea textArea = new TextArea();
+        textArea.setWrapText(true);
+        textArea.textProperty().bindBidirectional(inputProperty);
+        return textArea;
+    }
+
+    private TextField createTextField(Property<String> inputProperty) {
+        TextField textField = new TextField();
+        textField.setEditable(false);
+        textField.textProperty().bindBidirectional(inputProperty);
+        return textField;
+    }
+
+    private Request.RequestEnvelope encodeRequestEnvelope() {
+        Request.RequestEnvelope.Builder requestEnvelope = Request.RequestEnvelope.newBuilder();
+        requestEnvelope.setApplicationMessageId(this.applicationMessageIdInputProperty.get());
+        requestEnvelope.setApplicationMessageSeqNo(Long.parseLong(this.applicationMessageSeqNoProperty.get()));
+        requestEnvelope.setTechnicalMessageType(this.technicalMessageTypeInputProperty.get());
+        requestEnvelope.setTeamSetContextId(this.teamSetContextIdInputProperty.get());
+        requestEnvelope.setMode(Request.RequestEnvelope.Mode.forNumber(Integer.parseInt(this.modeInputProperty.get())));
+        Timestamp.Builder timestamp = Timestamp.newBuilder();
+        timestamp.setSeconds(Long.parseLong(this.timestampSecondsInputProperty.get()));
+        timestamp.setSeconds(Long.parseLong(this.applicationMessageSeqNoProperty.get()));
+        requestEnvelope.setTimestamp(timestamp.build());
+        return requestEnvelope.build();
+    }
+
+    protected abstract Optional<Message> encodeMessage();
 
     @Override
     public void initProperties() {
-        this.applicationMessageIdProperty = new SimpleStringProperty();
-        this.applicationMessageSeqNoProperty = new SimpleStringProperty();
-        this.technicalMessageTypeProperty = new SimpleStringProperty();
-        this.modeProperty = new SimpleStringProperty();
+        this.applicationMessageIdInputProperty = new SimpleStringProperty(UUID.generate());
+        this.applicationMessageSeqNoProperty = new SimpleStringProperty("1");
+        this.technicalMessageTypeInputProperty = new SimpleStringProperty("dke:capabilities");
+        this.teamSetContextIdInputProperty = new SimpleStringProperty(BLANK);
+        this.modeInputProperty = new SimpleStringProperty("0");
+        this.timestampSecondsInputProperty = new SimpleStringProperty(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond()));
+        this.timestampNanosInputProperty = new SimpleStringProperty(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).getNano()));
 
         this.messageContentInputProperty = new SimpleStringProperty();
-        this.messageContentOutputProperty = new SimpleStringProperty();
-        this.messageOutputProperty = new SimpleStringProperty();
 
+        this.messageAsBase64OutputProperty = new SimpleStringProperty();
     }
 
-    protected void encodeMessage(String encodedMessageContent) {
-
+    private void updateTimestampProperties() {
+        this.timestampSecondsInputProperty.set(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond()));
+        this.timestampNanosInputProperty.set(String.valueOf(Instant.now().atOffset(ZoneOffset.UTC).getNano()));
     }
+
 }
