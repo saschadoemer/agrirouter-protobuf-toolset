@@ -1,4 +1,4 @@
-package de.saschadoemer.agrirouter.protobuf.decoder.api.exceptions;
+package de.saschadoemer.agrirouter.protobuf.api.exceptions;
 
 public class CouldNotDecodeProtobufException extends RuntimeException {
 

@@ -21,6 +21,15 @@
             <groupId>de.saschadoemer.agrirouter</groupId>
             <artifactId>protobuf-decoder</artifactId>
         </dependency>
+        <dependency>
+            <groupId>de.saschadoemer.agrirouter</groupId>
+            <artifactId>protobuf-encoder</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.saschadoemer.agrirouter</groupId>
+            <artifactId>protobuf-api</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

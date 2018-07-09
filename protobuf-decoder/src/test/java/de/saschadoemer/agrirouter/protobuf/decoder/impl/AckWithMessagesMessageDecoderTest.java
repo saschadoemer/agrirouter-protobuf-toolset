@@ -30,7 +30,7 @@ class AckWithMessagesMessageDecoderTest {
                 "  }\n" +
                 "}";
 
-        Decoder decoder = new MessagesDecoder();
+        Decoder decoder = new MessageDecoder();
         Optional<String> decodedMessageOuterClassAsJson = decoder.safeDecode(validInput);
 
         Assertions.assertTrue(decodedMessageOuterClassAsJson.isPresent(), "There should be a result.");

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-class MessagesDecoderTest {
+class MessageDecoderTest {
 
     @Test
     void givenValidInputDecodeMessageOutClassShouldReturnFormattedJson() {
@@ -30,7 +30,7 @@ class MessagesDecoderTest {
                 "  }\n" +
                 "}";
 
-        Decoder decoder = new MessagesDecoder();
+        Decoder decoder = new MessageDecoder();
         Optional<String> decodedMessageOuterClassAsJson = decoder.safeDecode(validInput);
 
         Assertions.assertTrue(decodedMessageOuterClassAsJson.isPresent(), "There should be a result.");

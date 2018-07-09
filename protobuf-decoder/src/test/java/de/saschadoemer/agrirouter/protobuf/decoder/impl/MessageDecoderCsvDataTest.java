@@ -12,7 +12,7 @@ class MessageDecoderCsvDataTest {
     @ParameterizedTest
     @CsvFileSource(resources = "messages.csv")
     void givenRealLifeData_Decode_ShouldNotFailForAnyOfTheMessages(String message) {
-        Decoder decoder = new MessagesDecoder();
+        Decoder decoder = new MessageDecoder();
         Optional<String> decodedMessageOuterClassAsJson = decoder.safeDecode(message);
         Assertions.assertTrue(decodedMessageOuterClassAsJson.isPresent(), String.format("There should be a result for message [%s].",message));
     }
