@@ -4,7 +4,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
 import de.saschadoemer.agrirouter.protobuf.api.exceptions.CouldNotEncodeProtobufException;
 
-import java.util.Base64;
 import java.util.Optional;
 
 public interface Encoder<T extends Message> extends JsonFormatParserProvider {

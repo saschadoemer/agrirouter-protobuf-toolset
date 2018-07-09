@@ -4,7 +4,6 @@ import agrirouter.response.Response;
 import com.google.protobuf.Any;
 import com.google.protobuf.util.JsonFormat;
 import de.saschadoemer.agrirouter.protobuf.api.exceptions.CouldNotDecodeProtobufException;
-import de.saschadoemer.agrirouter.protobuf.api.exceptions.CouldNotEncodeProtobufException;
 import de.saschadoemer.agrirouter.protobuf.decoder.Decoder;
 import de.saschadoemer.agrirouter.protobuf.decoder.JsonFormatPrinterProvider;
 
