@@ -6,7 +6,7 @@ import com.google.protobuf.Any;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import de.saschadoemer.agrirouter.protobuf.api.exceptions.CouldNotEncodeProtobufException;
-import de.saschadoemer.agrirouter.protobuf.api.exceptions.UUID;
+import de.saschadoemer.agrirouter.protobuf.api.exceptions.UUIDUtils;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
@@ -131,7 +131,7 @@ public abstract class EncodeMessageWithContentPane extends DefaultGridPane {
 
     @Override
     public void initProperties() {
-        this.applicationMessageIdInputProperty = new SimpleStringProperty(UUID.generate());
+        this.applicationMessageIdInputProperty = new SimpleStringProperty(UUIDUtils.generate());
         this.applicationMessageSeqNoProperty = new SimpleStringProperty("1");
         this.technicalMessageTypeInputProperty = new SimpleStringProperty(this.getTechnicalMessageType());
         this.teamSetContextIdInputProperty = new SimpleStringProperty(BLANK);
