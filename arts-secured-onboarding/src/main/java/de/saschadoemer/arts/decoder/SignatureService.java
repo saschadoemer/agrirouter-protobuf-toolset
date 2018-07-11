@@ -49,7 +49,7 @@ public class SignatureService {
             signature.initVerify(this.createPublicKey(publicKey));
             signature.update(requestBody.getBytes(UTF_8));
             if (!signature.verify(signedBytes)) {
-                throw new RuntimeException("Invalid signature.");
+                throw new CouldNotCreateSignatureException("Invalid signature.");
             }
         } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
             throw new CouldNotCreateSignatureException(e);
