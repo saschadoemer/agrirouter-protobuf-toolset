@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.saschadoemer.agrirouter</groupId>
-    <artifactId>protobuf-toolset</artifactId>
+    <groupId>de.saschadoemer.agrirouter.toolset</groupId>
+    <artifactId>arts-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>AGRIROUTER - PROTOBUF TOOLSET</name>
-    <description>This project contains a simple toolset for working with the agrirouter protobuf files to ensure easy
+    <name>ARTS - Parent</name>
+    <description>This project contains a simple toolset for working with the agrirouter to ensure easy
         development, testing and debugging. See the README.md for more details.
     </description>
     <url>http://github.com/saschadoemer/agrirouter-protobuf-toolset</url>
@@ -41,12 +41,13 @@
     </distributionManagement>
 
     <modules>
-        <module>protobuf-definitions/</module>
-        <module>protobuf-client-commandline</module>
-        <module>protobuf-client-javafx</module>
-        <module>protobuf-decoder</module>
-        <module>protobuf-encoder</module>
-        <module>protobuf-api</module>
+        <module>arts-protobuf-definitions/</module>
+        <module>arts-client-commandline</module>
+        <module>arts-client-javafx</module>
+        <module>arts-protobuf-decoder</module>
+        <module>arts-protobuf-encoder</module>
+        <module>arts-api</module>
+        <module>arts-secured-onboarding</module>
     </modules>
 
     <properties>
@@ -78,23 +79,23 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>de.saschadoemer.agrirouter</groupId>
-                <artifactId>protobuf-definitions</artifactId>
+                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
+                <artifactId>arts-protobuf-definitions</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>de.saschadoemer.agrirouter</groupId>
-                <artifactId>protobuf-decoder</artifactId>
+                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
+                <artifactId>arts-protobuf-decoder</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>de.saschadoemer.agrirouter</groupId>
-                <artifactId>protobuf-encoder</artifactId>
+                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
+                <artifactId>arts-protobuf-encoder</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>de.saschadoemer.agrirouter</groupId>
-                <artifactId>protobuf-api</artifactId>
+                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
+                <artifactId>arts-protobuf-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
