@@ -12,22 +12,27 @@ public class MainPane extends TabPane implements StandardComponent {
 
     @Override
     public void initComponents() {
-        Tab capabilitiesTab = new Tab();
-        capabilitiesTab.setText("Capabilities");
-        capabilitiesTab.setContent(new EncodeCapabilitiesMessagePane());
-        capabilitiesTab.setClosable(false);
+        Tab encodeCapabilitiesTab = new Tab();
+        encodeCapabilitiesTab.setText("[Messages] Encode Capabilities Message");
+        encodeCapabilitiesTab.setContent(new EncodeCapabilitiesMessagePane());
+        encodeCapabilitiesTab.setClosable(false);
 
-        Tab signatureTab = new Tab();
-        signatureTab.setText("Signature");
-        signatureTab.setContent(new CreateSignaturePane());
-        signatureTab.setClosable(false);
+        Tab decodeMessageTab = new Tab();
+        decodeMessageTab.setText("[Messages] Decode Message");
+        decodeMessageTab.setContent(new DecodeMessagePane());
+        decodeMessageTab.setClosable(false);
 
-        Tab decodingTab = new Tab();
-        decodingTab.setText("Decode Message ");
-        decodingTab.setContent(new DecodeMessagePane());
-        decodingTab.setClosable(false);
+        Tab createSignatureTab = new Tab();
+        createSignatureTab.setText("[Secured] Create Signature");
+        createSignatureTab.setContent(new CreateSignaturePane());
+        createSignatureTab.setClosable(false);
 
-        this.getTabs().addAll(capabilitiesTab, signatureTab, decodingTab);
+        Tab decodeSecurityTokenTab = new Tab();
+        decodeSecurityTokenTab.setText("[Secured] Decode Token");
+        decodeSecurityTokenTab.setContent(new DecodeSecurityTokenPane());
+        decodeSecurityTokenTab.setClosable(false);
+
+        this.getTabs().addAll(encodeCapabilitiesTab, decodeMessageTab, createSignatureTab, decodeSecurityTokenTab);
     }
 
     @Override

@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class CreateSignaturePane extends DefaultGridPane {
 
@@ -43,11 +44,12 @@ public class CreateSignaturePane extends DefaultGridPane {
 
         this.add(new Label("Signature:"), 0, 3);
 
-        TextArea signatureTextArea = new TextArea();
-        signatureTextArea.textProperty().bindBidirectional(this.signatureOutputProperty);
-        this.add(signatureTextArea, 1, 3);
+        TextField signatureTextField = new TextField();
+        signatureTextField.setEditable(false);
+        signatureTextField.textProperty().bindBidirectional(this.signatureOutputProperty);
+        this.add(signatureTextField, 1, 3);
 
-        Button decodeMessageButton = new Button("Create Signature");
+        Button decodeMessageButton = new Button("Create");
         decodeMessageButton.setOnAction(event -> {
             String signature = this.signatureService.createSignature(this.privateKeyInputProperty.get(), this.publicKeyInputProperty.get(), this.requestInputProperty.get());
             this.signatureOutputProperty.set(signature);
