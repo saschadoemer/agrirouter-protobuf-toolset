@@ -25,10 +25,6 @@
             <groupId>de.saschadoemer.agrirouter.toolset</groupId>
             <artifactId>arts-protobuf-encoder</artifactId>
         </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-protobuf-api</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

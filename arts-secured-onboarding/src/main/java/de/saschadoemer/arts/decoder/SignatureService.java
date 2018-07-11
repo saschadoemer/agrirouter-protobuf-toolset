@@ -1,5 +1,6 @@
 package de.saschadoemer.arts.decoder;
 
+import de.saschadoemer.arts.api.exceptions.CouldNotCreateSignatureException;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 
@@ -38,7 +39,7 @@ public class SignatureService {
             signature.update(requestBody.getBytes(UTF_8));
             return signature.sign();
         } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
-            throw new RuntimeException(e);
+            throw new CouldNotCreateSignatureException(e);
         }
     }
 
@@ -51,7 +52,7 @@ public class SignatureService {
                 throw new RuntimeException("Invalid signature.");
             }
         } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
-            throw new RuntimeException(e);
+            throw new CouldNotCreateSignatureException(e);
         }
     }
 
@@ -65,7 +66,7 @@ public class SignatureService {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePrivate(keySpec);
         } catch (IllegalArgumentException | InvalidKeySpecException | NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new CouldNotCreateSignatureException(e);
         }
     }
 
@@ -79,7 +80,7 @@ public class SignatureService {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(keySpec);
         } catch (IllegalArgumentException | InvalidKeySpecException | NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new CouldNotCreateSignatureException(e);
         }
     }
 

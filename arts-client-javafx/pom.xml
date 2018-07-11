@@ -27,10 +27,6 @@
         </dependency>
         <dependency>
             <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-protobuf-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter.toolset</groupId>
             <artifactId>arts-secured-onboarding</artifactId>
         </dependency>
     </dependencies>

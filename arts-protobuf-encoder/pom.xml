@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-protobuf-api</artifactId>
+            <artifactId>arts-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>

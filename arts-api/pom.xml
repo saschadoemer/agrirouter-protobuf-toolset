@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>arts-protobuf-api</artifactId>
+    <artifactId>arts-api</artifactId>
     <name>ARTS - Api</name>
 
 </project>
