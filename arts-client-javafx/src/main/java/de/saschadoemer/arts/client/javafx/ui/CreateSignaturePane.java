@@ -1,9 +1,7 @@
 package de.saschadoemer.arts.client.javafx.ui;
 
 import de.saschadoemer.arts.client.javafx.ui.components.DefaultGridPane;
-import de.saschadoemer.arts.decoder.Decoder;
 import de.saschadoemer.arts.decoder.SignatureService;
-import de.saschadoemer.arts.decoder.impl.MessageDecoder;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
