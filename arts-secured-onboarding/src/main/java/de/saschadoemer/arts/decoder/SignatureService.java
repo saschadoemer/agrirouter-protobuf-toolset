@@ -20,7 +20,7 @@ public class SignatureService {
         try {
             return Hex.decodeHex(encodedSignature.toCharArray());
         } catch (DecoderException e) {
-            throw new RuntimeException(e);
+            throw new CouldNotCreateSignatureException(e);
         }
     }
 
