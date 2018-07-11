@@ -1,4 +1,4 @@
-# agrirouter-protobuf-toolset
+# ARTS - The AgriRouter ToolSet
 
 [![Build status for develop](https://travis-ci.com/saschadoemer/agrirouter-protobuf-toolset.svg?branch=develop)](https://travis-ci.com/saschadoemer/agrirouter-protobuf-toolset)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f2f2fb0c18b47b983e2144ff3ebd95c)](https://www.codacy.com/app/cf4thqgxcnxaovouxtnv/agrirouter-protobuf-toolset?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=saschadoemer/agrirouter-protobuf-toolset&amp;utm_campaign=Badge_Grade)
@@ -17,11 +17,11 @@ As a universal data exchange platform, agrirouter fills a gap on the way to Farm
 
 ### The current project you're looking at?
 
-This project contains a simple toolset for working with the agrirouter protobuf files to ensure easy development, testing and debugging. At this point the project will include sub projects with different approaches.
+This project contains a simple toolset for working with the agrirouter to ensure easy development, testing and debugging. At this point the project will include sub projects with different approaches.
 
 #### Command line client
 
-The command line client is able to encode, decode and validate Protobuf using the given types the AR supports. Decoding will be Protobuf to JSON for better readability. Encoding will be JSON to Protobuf, validation will be performed on given Protobuf. You can run the client by downloading the latest RELEASE | [SNAPSHOT](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/agrirouter/protobuf-client-commandline) and 
+You can run the client by downloading the latest RELEASE | [SNAPSHOT](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/agrirouter/protobuf-client-commandline) and 
 execute `java -jar protobuf-client-commandline-X.X.X.jar` for the latest release and `java -jar protobuf-client-commandline-X.X.X-SNAPSHOT.jar` for the latest snapshot.
 
 _Requirements_
@@ -30,7 +30,7 @@ Currently the client requires a Java 9 runtime environment to run properly. No f
 
 #### Rich client interface 
 
-The rich client is able to encode, decode and validate Protobuf using the given types the AR supports. Decoding will be Protobuf to JSON for better readability. Encoding will be JSON to Protobuf, validation will be performed on given Protobuf. You can run the client by downloading the latest RELEASE | [SNAPSHOT](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/agrirouter/protobuf-client-javafx) and 
+You can run the client by downloading the latest RELEASE | [SNAPSHOT](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/agrirouter/protobuf-client-javafx) and 
 execute `java -jar protobuf-client-javafx-X.X.X.jar` for the latest release and `java -jar protobuf-client-javafx-X.X.X-SNAPSHOT.jar` for the latest snapshot.
 
 _Requirements_
