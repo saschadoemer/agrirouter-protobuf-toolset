@@ -47,7 +47,7 @@ Feel free to file a feature request or a bug using the issue tracker.
 
 ### How to support the project?
 
-If you like the work we are doing, feel free to [buy us a coffee](buymeacoff.ee/ks0iWGZlR). We're open for any kind of contribution, feel free to file issues, feature requests or anything else.
+If you like the work we are doing, feel free to [buy us a coffee](https://buymeacoff.ee/ks0iWGZlR). We're open for any kind of contribution, feel free to file issues, feature requests or anything else.
 
 # Development
 
