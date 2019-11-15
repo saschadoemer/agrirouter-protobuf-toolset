@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>ARTS - Client (JavaFX)</name>
-    <artifactId>arts-client-javafx</artifactId>
+    <name>ARTS - CLI</name>
+    <artifactId>arts-client-cli</artifactId>
 
     <dependencies>
         <dependency>
@@ -24,10 +24,6 @@
         <dependency>
             <groupId>de.saschadoemer.agrirouter.toolset</groupId>
             <artifactId>arts-protobuf-encoder</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-secured-onboarding</artifactId>
         </dependency>
     </dependencies>
 
@@ -46,7 +42,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>de.saschadoemer.arts.client.javafx.Main</mainClass>
+                                    <mainClass>de.saschadoemer.arts.client.commandline.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -55,6 +51,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

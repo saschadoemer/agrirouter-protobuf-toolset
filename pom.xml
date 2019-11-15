@@ -42,8 +42,7 @@
 
     <modules>
         <module>arts-protobuf-definitions/</module>
-        <module>arts-client-commandline</module>
-        <module>arts-client-javafx</module>
+        <module>arts-client-cli</module>
         <module>arts-protobuf-decoder</module>
         <module>arts-protobuf-encoder</module>
         <module>arts-api</module>
@@ -105,7 +104,6 @@
                 <artifactId>arts-secured-onboarding</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
@@ -116,7 +114,6 @@
                 <artifactId>protobuf-java-util</artifactId>
                 <version>${protobuf-java.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
@@ -127,14 +124,11 @@
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
             </dependency>
-
-            <!-- GSON -->
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
