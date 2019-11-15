@@ -41,7 +41,6 @@
     </distributionManagement>
 
     <modules>
-        <module>arts-protobuf-definitions/</module>
         <module>arts-client-cli</module>
         <module>arts-protobuf-decoder</module>
         <module>arts-protobuf-encoder</module>
@@ -75,15 +74,11 @@
         <maven-compiler-plugin.target>9</maven-compiler-plugin.target>
         <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
         <clover-maven-plugin.version>4.2.1</clover-maven-plugin.version>
+        <agrirouter-api-protobuf-definitions.version>1.0.0-jdk11</agrirouter-api-protobuf-definitions.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-                <artifactId>arts-protobuf-definitions</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>de.saschadoemer.agrirouter.toolset</groupId>
                 <artifactId>arts-protobuf-decoder</artifactId>
@@ -141,6 +136,11 @@
                 <version>${junit-jupiter-api.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.agrirouter.proto</groupId>
+                <artifactId>agrirouter-api-protobuf-definitions</artifactId>
+                <version>${agrirouter-api-protobuf-definitions.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -148,6 +148,10 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agrirouter.proto</groupId>
+            <artifactId>agrirouter-api-protobuf-definitions</artifactId>
         </dependency>
     </dependencies>
 
