@@ -15,10 +15,6 @@
     <dependencies>
         <dependency>
             <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-protobuf-definitions</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter.toolset</groupId>
             <artifactId>arts-api</artifactId>
         </dependency>
         <dependency>

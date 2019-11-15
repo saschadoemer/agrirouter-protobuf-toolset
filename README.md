@@ -22,7 +22,7 @@ This project contains a simple toolset for working with the agrirouter to ensure
 #### Command line client
 
 You can run the client by downloading the latest RELEASE | [SNAPSHOT](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/agrirouter/protobuf-client-commandline) and 
-execute `java -jar protobuf-client-commandline-X.X.X.jar` for the latest release and `java -jar protobuf-client-commandline-X.X.X-SNAPSHOT.jar` for the latest snapshot.
+execute `java -jar arts-cli-X.X.X.jar` for the latest release and `java -jar arts-cli-X.X.X-SNAPSHOT.jar` for the latest snapshot.
 
 _Requirements_
 
