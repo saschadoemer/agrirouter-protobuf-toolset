@@ -43,7 +43,6 @@
     <modules>
         <module>arts-protobuf-definitions/</module>
         <module>arts-client-commandline</module>
-        <module>arts-client-javafx</module>
         <module>arts-protobuf-decoder</module>
         <module>arts-protobuf-encoder</module>
         <module>arts-api</module>
