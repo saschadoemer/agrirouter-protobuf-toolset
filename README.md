@@ -26,20 +26,7 @@ execute `java -jar protobuf-client-commandline-X.X.X.jar` for the latest release
 
 _Requirements_
 
-Currently the client requires a Java 9 runtime environment to run properly. No further needs.
-
-#### Rich client interface 
-
-You can run the client by downloading the latest RELEASE | [SNAPSHOT](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/agrirouter/protobuf-client-javafx) and 
-execute `java -jar protobuf-client-javafx-X.X.X.jar` for the latest release and `java -jar protobuf-client-javafx-X.X.X-SNAPSHOT.jar` for the latest snapshot.
-
-_Requirements_
-
-Currently the client requires a Java 9 runtime environment to run properly. No further needs. 
-
-#### Web service implementation
-
--- TBD --
+No further needs.
 
 ### Missing something? Something is broken?
 
