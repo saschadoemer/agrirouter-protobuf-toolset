@@ -14,19 +14,24 @@ public class Main {
         printWelcomeTitle();
         boolean doNotLeaveApplication = true;
         while (doNotLeaveApplication) {
-            printInputOptions();
-            int choice = readInputOption();
-            switch (choice) {
-                case 0:
-                    exit();
-                    doNotLeaveApplication = false;
-                    break;
-                case 1:
-                    PasteInputHandler pasteInputHandler = new PasteInputHandler();
-                    pasteInputHandler.handle();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid option selected.");
+            try {
+
+                printInputOptions();
+                int choice = readInputOption();
+                switch (choice) {
+                    case 0:
+                        exit();
+                        doNotLeaveApplication = false;
+                        break;
+                    case 1:
+                        PasteInputHandler pasteInputHandler = new PasteInputHandler();
+                        pasteInputHandler.handle();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option selected.");
+                }
+            } catch (Exception e) {
+                printSomethingWentWrongInfo();
             }
         }
     }
@@ -54,11 +59,20 @@ public class Main {
         return choice;
     }
 
+    private static void printSomethingWentWrongInfo() {
+        System.out.println("************************************************************************************");
+        System.out.println("*");
+        System.out.println("* AGRIROUTER TOOLSET / Something went wrong, please file an issue and support us to solve the error.");
+        System.out.println("* AGRIROUTER TOOLSET / You'll find the issue tracker right here >>> https://github.com/DKE-Data/agrirouter-api-protobuf-definitions/issues.");
+        System.out.println("*");
+        System.out.println("************************************************************************************");
+    }
+
     private static void exit() {
         System.out.println("************************************************************************************");
         System.out.println("*");
         System.out.println("* AGRIROUTER TOOLSET / Thank you for using the decoder.");
-        System.out.println("* AGRIROUTER TOOLSET / Feel free to buy us a coffee [buymeacoff.ee/ks0iWGZlR] ;-)");
+        System.out.println("* AGRIROUTER TOOLSET / Feel free to buy us a coffee [https://buymeacoff.ee/ks0iWGZlR] ;-)");
         System.out.println("*");
         System.out.println("************************************************************************************");
     }
