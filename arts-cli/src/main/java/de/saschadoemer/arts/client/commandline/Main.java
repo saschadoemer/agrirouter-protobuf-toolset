@@ -45,7 +45,7 @@ public class Main {
     }
 
     private static void printInputOptions() {
-        System.out.println("[1] Paste input.");
+        System.out.println("[1] Paste input to decode.");
         System.out.println("[0] Quit.");
     }
 
