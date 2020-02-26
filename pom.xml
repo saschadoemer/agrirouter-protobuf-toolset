@@ -42,17 +42,12 @@
 
     <modules>
         <module>arts-cli</module>
-        <module>arts-protobuf-decoder</module>
-        <module>arts-protobuf-encoder</module>
-        <module>arts-api</module>
-        <module>arts-secured-onboarding</module>
     </modules>
 
     <properties>
-        <!-- FRAMEWORKS -->
-        <protobuf-java.version>3.6.0</protobuf-java.version>
-        <junit-jupiter-api.version>5.0.2</junit-jupiter-api.version>
-        <junit-platform-surefire-provider.version>1.0.2</junit-platform-surefire-provider.version>
+        <!-- AR -->
+        <agrirouter-api-java-api.version>0.0.1-SNAPSHOT</agrirouter-api-java-api.version>
+        <agrirouter-api-java-convenience.version>0.0.1-SNAPSHOT</agrirouter-api-java-convenience.version>
 
         <!-- PLUGINS -->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
@@ -69,77 +64,37 @@
         <commons-codec.version>1.11</commons-codec.version>
         <gson.version>2.8.2</gson.version>
 
-        <!-- Configuration -->
+        <!-- CONFIG -->
         <maven-compiler-plugin.source>11</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>11</maven-compiler-plugin.target>
         <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
         <clover-maven-plugin.version>4.2.1</clover-maven-plugin.version>
-        <agrirouter-api-protobuf-definitions.version>1.0.0-jdk11</agrirouter-api-protobuf-definitions.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-                <artifactId>arts-protobuf-decoder</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-                <artifactId>arts-protobuf-encoder</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-                <artifactId>arts-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-                <artifactId>arts-secured-onboarding</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.protobuf</groupId>
-                <artifactId>protobuf-java</artifactId>
-                <version>${protobuf-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.protobuf</groupId>
-                <artifactId>protobuf-java-util</artifactId>
-                <version>${protobuf-java.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>${commons-codec.version}</version>
+                <groupId>com.agrirouter.api.lmis</groupId>
+                <artifactId>agrirouter-api-java-api</artifactId>
+                <version>${agrirouter-api-java-api.version}</version>
+                <classifier>jdk11</classifier>
             </dependency>
             <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${gson.version}</version>
+                <groupId>com.agrirouter.api.lmis</groupId>
+                <artifactId>agrirouter-api-java-impl</artifactId>
+                <version>${agrirouter-api-java-api.version}</version>
+                <classifier>jdk11</classifier>
             </dependency>
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter-api.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-params</artifactId>
-                <version>${junit-jupiter-api.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.agrirouter.proto</groupId>
-                <artifactId>agrirouter-api-protobuf-definitions</artifactId>
-                <version>${agrirouter-api-protobuf-definitions.version}</version>
+                <groupId>com.agrirouter.api.lmis</groupId>
+                <artifactId>agrirouter-api-java-convenience</artifactId>
+                <version>${agrirouter-api-java-convenience.version}</version>
+                <classifier>jdk11</classifier>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -150,10 +105,34 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.agrirouter.proto</groupId>
-            <artifactId>agrirouter-api-protobuf-definitions</artifactId>
+            <groupId>com.agrirouter.api.lmis</groupId>
+            <artifactId>agrirouter-api-java-api</artifactId>
+            <classifier>jdk11</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.agrirouter.api.lmis</groupId>
+            <artifactId>agrirouter-api-java-impl</artifactId>
+            <classifier>jdk11</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.agrirouter.api.lmis</groupId>
+            <artifactId>agrirouter-api-java-convenience</artifactId>
+            <classifier>jdk11</classifier>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <pluginManagement>
@@ -183,41 +162,6 @@
                     <target>${maven-compiler-plugin.target}</target>
                     <encoding>${maven-compiler-plugin.encoding}</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>${build-helper-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>src/main/generated</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>${junit-platform-surefire-provider.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-engine</artifactId>
-                        <version>${junit-jupiter-api.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
