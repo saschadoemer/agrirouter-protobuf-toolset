@@ -1,7 +1,7 @@
 package de.saschadoemer.arts.client.commandline;
 
-import de.saschadoemer.arts.client.commandline.handler.EncodeCapabilitiesHandler;
 import de.saschadoemer.arts.client.commandline.handler.DecodeMessageHandler;
+import de.saschadoemer.arts.client.commandline.handler.EncodeCapabilitiesHandler;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -31,6 +31,7 @@ public class Main {
                     case 2:
                         EncodeCapabilitiesHandler encodeCapabilitiesHandler = new EncodeCapabilitiesHandler();
                         encodeCapabilitiesHandler.handle();
+                        break;
                     default:
                         throw new IllegalArgumentException("Invalid option selected.");
                 }
@@ -50,7 +51,7 @@ public class Main {
 
     private static void printInputOptions() {
         System.out.println("[1] Paste input to decode.");
-        System.out.println("[2] Encode capabilities.");
+        System.out.println("[2] Encode capabilities message.");
         System.out.println("[0] Quit.");
     }
 
