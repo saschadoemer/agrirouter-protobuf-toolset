@@ -58,6 +58,9 @@ public class DecodeResponseHandler extends InputHandler {
         if (typeUrl.contains(FeedResponse.HeaderQueryResponse.getDescriptor().getName())) {
             return new HeaderQueryResponseDecoder();
         }
+        if (typeUrl.contains(FeedResponse.MessageQueryResponse.getDescriptor().getName())) {
+            return new MessageQueryResponseDecoder();
+        }
         return new UndefinedContentDecoder();
     }
 
