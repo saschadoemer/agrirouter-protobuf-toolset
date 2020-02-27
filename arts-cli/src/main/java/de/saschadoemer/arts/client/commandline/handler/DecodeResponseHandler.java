@@ -2,6 +2,7 @@ package de.saschadoemer.arts.client.commandline.handler;
 
 import agrirouter.cloud.registration.CloudVirtualizedAppRegistration;
 import agrirouter.commons.MessageOuterClass;
+import agrirouter.feed.response.FeedResponse;
 import agrirouter.response.payload.account.Endpoints;
 import agrirouter.response.payload.endpoint.Capability;
 import com.dke.data.agrirouter.api.dto.encoding.DecodeMessageResponse;
@@ -53,6 +54,9 @@ public class DecodeResponseHandler extends InputHandler {
         }
         if (typeUrl.contains(Capability.CapabilityResponse.getDescriptor().getName())) {
             return new CapabilityResponseDecoder();
+        }
+        if (typeUrl.contains(FeedResponse.HeaderQueryResponse.getDescriptor().getName())) {
+            return new HeaderQueryResponseDecoder();
         }
         return new UndefinedContentDecoder();
     }
