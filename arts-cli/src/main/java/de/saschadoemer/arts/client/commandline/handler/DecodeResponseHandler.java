@@ -1,5 +1,6 @@
 package de.saschadoemer.arts.client.commandline.handler;
 
+import agrirouter.cloud.registration.CloudVirtualizedAppRegistration;
 import agrirouter.commons.MessageOuterClass;
 import agrirouter.response.payload.account.Endpoints;
 import com.dke.data.agrirouter.api.dto.encoding.DecodeMessageResponse;
@@ -9,6 +10,7 @@ import de.saschadoemer.arts.client.commandline.decoder.ContentDecoder;
 import de.saschadoemer.arts.client.commandline.decoder.impl.ListEndpointsResponseDecoder;
 import de.saschadoemer.arts.client.commandline.decoder.impl.MessagesResponseDecoder;
 import de.saschadoemer.arts.client.commandline.decoder.impl.UndefinedContentDecoder;
+import de.saschadoemer.arts.client.commandline.decoder.impl.VcuOnboardingResponseDecoder;
 import de.saschadoemer.arts.client.commandline.helper.ErrorPrinter;
 import de.saschadoemer.arts.client.commandline.helper.ResultPrinter;
 
@@ -47,6 +49,9 @@ public class DecodeResponseHandler extends InputHandler {
         }
         if (typeUrl.contains(MessageOuterClass.Messages.getDescriptor().getName())) {
             return new MessagesResponseDecoder();
+        }
+        if(typeUrl.contains(CloudVirtualizedAppRegistration.OnboardingResponse.getDescriptor().getName())){
+            return new VcuOnboardingResponseDecoder();
         }
         return new UndefinedContentDecoder();
     }
