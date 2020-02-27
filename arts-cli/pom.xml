@@ -12,17 +12,6 @@
     <name>ARTS - CLI</name>
     <artifactId>arts-client-cli</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-protobuf-decoder</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.saschadoemer.agrirouter.toolset</groupId>
-            <artifactId>arts-protobuf-encoder</artifactId>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -44,6 +33,18 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
             </plugin>
         </plugins>
     </build>
