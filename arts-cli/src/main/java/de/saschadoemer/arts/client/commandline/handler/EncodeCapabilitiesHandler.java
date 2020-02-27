@@ -27,6 +27,7 @@ public class EncodeCapabilitiesHandler extends InputHandler {
         this.resultPrinter = new ResultPrinter();
     }
 
+    @Override
     public void handle() {
         try {
             String appCertificationId = this.readInput("Enter the application ID:");
@@ -66,6 +67,7 @@ public class EncodeCapabilitiesHandler extends InputHandler {
             messageHeaderParameters.setApplicationMessageId(MessageIdService.generateMessageId());
             messageHeaderParameters.setMode(Request.RequestEnvelope.Mode.DIRECT);
             PayloadParameters payloadParameters = new PayloadParameters();
+            payloadParameters.setTypeUrl(Capabilities.CapabilitySpecification.getDescriptor().getFullName());
             payloadParameters.setValue(message);
             String encodedMessage = encodeMessageService.encode(messageHeaderParameters, payloadParameters);
 

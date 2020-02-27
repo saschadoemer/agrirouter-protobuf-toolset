@@ -1,9 +1,10 @@
 package de.saschadoemer.arts.client.commandline;
 
-import de.saschadoemer.arts.client.commandline.handler.DecodeMessageHandler;
+import de.saschadoemer.arts.client.commandline.handler.DecodeResponseHandler;
 import de.saschadoemer.arts.client.commandline.handler.EncodeCapabilitiesHandler;
+import de.saschadoemer.arts.client.commandline.handler.FetchMessageResponseHandler;
+import de.saschadoemer.arts.client.commandline.handler.SendCommandHandler;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -13,27 +14,32 @@ public class Main {
 
     public static void main(String[] args) {
         printWelcomeTitle();
-        boolean doNotLeaveApplication = true;
-        while (doNotLeaveApplication) {
+        while (true) {
             try {
-
                 printInputOptions();
                 int choice = readInputOption();
                 switch (choice) {
                     case 0:
                         exit();
-                        doNotLeaveApplication = false;
                         break;
                     case 1:
-                        DecodeMessageHandler decodeMessageHandler = new DecodeMessageHandler();
-                        decodeMessageHandler.handle();
+                        DecodeResponseHandler decodeResponseHandler = new DecodeResponseHandler();
+                        decodeResponseHandler.handle();
                         break;
                     case 2:
                         EncodeCapabilitiesHandler encodeCapabilitiesHandler = new EncodeCapabilitiesHandler();
                         encodeCapabilitiesHandler.handle();
                         break;
+                    case 3:
+                        SendCommandHandler sendCommandHandler = new SendCommandHandler();
+                        sendCommandHandler.handle();
+                        break;
+                    case 4:
+                        FetchMessageResponseHandler fetchMessageResponseHandler = new FetchMessageResponseHandler();
+                        fetchMessageResponseHandler.handle();
+                        break;
                     default:
-                        throw new IllegalArgumentException("Invalid option selected.");
+                        System.exit(0);
                 }
             } catch (Exception e) {
                 printSomethingWentWrongInfo();
@@ -50,18 +56,16 @@ public class Main {
     }
 
     private static void printInputOptions() {
-        System.out.println("[1] Paste input to decode.");
+        System.out.println("[1] Decode response from the AR.");
         System.out.println("[2] Encode capabilities message.");
-        System.out.println("[0] Quit.");
+        System.out.println("[3] Send command to the AR (message without dedicated recipients).");
+        System.out.println("[4] Fetch messages from outbox.");
     }
 
     private static int readInputOption() {
         Scanner scanner = new Scanner(System.in);
         int choice;
-        do {
-            choice = scanner.nextInt();
-        }
-        while (!Arrays.asList(0, 1, 2).contains(choice));
+        choice = scanner.nextInt();
         return choice;
     }
 
