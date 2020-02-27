@@ -51,15 +51,20 @@ public class Main {
         System.out.println("************************************************************************************");
         System.out.println("*");
         System.out.println("* AGRIROUTER TOOLSET / Decoding protobuf messages from the AR.");
+        System.out.println("* AGRIROUTER TOOLSET / Feel free to buy us a coffee [https://buymeacoff.ee/ks0iWGZlR] ;-)");
         System.out.println("*");
         System.out.println("************************************************************************************");
     }
 
     private static void printInputOptions() {
-        System.out.println("[1] Decode response from the AR.");
-        System.out.println("[2] Encode capabilities message.");
-        System.out.println("[3] Send command to the AR (message without dedicated recipients).");
-        System.out.println("[4] Fetch messages from outbox.");
+        System.out.println("************************************************************************************");
+        System.out.println("*");
+        System.out.println("* [1] Decode response from the AR.");
+        System.out.println("* [2] Encode capabilities message.");
+        System.out.println("* [3] Send command to the AR (message without dedicated recipients).");
+        System.out.println("* [4] Fetch messages from outbox.");
+        System.out.println("*");
+        System.out.println("************************************************************************************");
     }
 
     private static int readInputOption() {
