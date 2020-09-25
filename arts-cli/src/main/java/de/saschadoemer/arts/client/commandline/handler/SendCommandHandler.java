@@ -13,20 +13,20 @@ public class SendCommandHandler extends InputHandler {
     @Override
     public void handle() {
         try {
-            String encodedMessage = this.readInput("Please post your message:");
-            String onboardingResponseAsJson = this.readInput("Please paste your onboarding response:");
+            String encodedMessage = readInput("Please paste your message:");
+            String onboardingResponseAsJson = readInput("Please paste your onboarding response:");
 
-            OnboardingResponse onboardingResponse = this.parseOnboardingResponse(onboardingResponseAsJson);
+            OnboardingResponse onboardingResponse = parseOnboardingResponse(onboardingResponseAsJson);
             SendMessageService sendMessageService = new SendMessageServiceImpl();
             SendMessageParameters parameters = new SendMessageParameters();
             parameters.setApplicationMessageId(MessageIdService.generateMessageId());
             parameters.setOnboardingResponse(onboardingResponse);
             parameters.setEncodedMessages(Collections.singletonList(encodedMessage));
-            parameters.setSequenceNumber(this.getSeqNo());
+            parameters.setSequenceNumber(getSeqNo());
             
             sendMessageService.send(parameters);
         } catch (Exception e) {
-            this.logger.error(e);
+            logger.error(e);
         }
     }
 

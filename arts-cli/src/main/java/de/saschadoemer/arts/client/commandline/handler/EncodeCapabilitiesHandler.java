@@ -4,18 +4,16 @@ import agrirouter.request.Request;
 import agrirouter.request.payload.endpoint.Capabilities;
 import agrirouter.request.payload.endpoint.Capabilities.CapabilitySpecification.PushNotification;
 import com.dke.data.agrirouter.api.enums.TechnicalMessageType;
-import com.dke.data.agrirouter.api.factories.impl.CapabilitiesMessageContentFactory;
-import com.dke.data.agrirouter.api.factories.impl.parameters.CapabilitiesMessageParameters;
 import com.dke.data.agrirouter.api.service.messaging.encoding.EncodeMessageService;
 import com.dke.data.agrirouter.api.service.parameters.MessageHeaderParameters;
 import com.dke.data.agrirouter.api.service.parameters.PayloadParameters;
 import com.dke.data.agrirouter.impl.common.MessageIdService;
 import com.dke.data.agrirouter.impl.messaging.encoding.EncodeMessageServiceImpl;
-import com.google.protobuf.ByteString;
 import de.saschadoemer.arts.client.commandline.helper.ErrorPrinter;
 import de.saschadoemer.arts.client.commandline.helper.ResultPrinter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EncodeCapabilitiesHandler extends InputHandler {
 
@@ -23,58 +21,63 @@ public class EncodeCapabilitiesHandler extends InputHandler {
     private final ResultPrinter resultPrinter;
 
     public EncodeCapabilitiesHandler() {
-        this.errorPrinter = new ErrorPrinter();
-        this.resultPrinter = new ResultPrinter();
+        errorPrinter = new ErrorPrinter();
+        resultPrinter = new ResultPrinter();
     }
 
     @Override
     public void handle() {
         try {
-            String appCertificationId = this.readInput("Enter the application ID:");
-            String appCertificationVersionId = this.readInput("Enter the application certification version ID:");
-            String enablePushNotifications = this.readInput("Enter 'true' if you want to enable push notification:");
-            String sendingCapabilitiesAsCsv = this.readInput("Enter the capabilities to send as CSV:");
-            String receivingCapabilitiesAsCsv = this.readInput("Enter the capabilities to receive as CSV:");
+            String appCertificationId = readInput("Enter the application ID:");
+            String appCertificationVersionId = readInput("Enter the application certification version ID:");
+            String enablePushNotifications = readInput("Enter 'true' if you want to enable push notification:");
+            String sendingCapabilitiesAsCsv = readInput("Enter the capabilities to send as CSV:");
+            String receivingCapabilitiesAsCsv = readInput("Enter the capabilities to receive as CSV:");
 
-            CapabilitiesMessageContentFactory capabilitiesMessageContentFactory = new CapabilitiesMessageContentFactory();
-            CapabilitiesMessageParameters parameters = new CapabilitiesMessageParameters();
-            parameters.setAppCertificationId(appCertificationId);
-            parameters.setAppCertificationVersionId(appCertificationVersionId);
-            parameters.setEnablePushNotifications(Boolean.parseBoolean(enablePushNotifications) ? PushNotification.ENABLED : PushNotification.DISABLED);
-            parameters.setCapabilities(new ArrayList<>(2));
+            List<Capabilities.CapabilitySpecification.Capability> capabilities = new ArrayList<>();
 
             String[] sendingCapabilities = sendingCapabilitiesAsCsv.split(",");
             for (String technicalMessageType : sendingCapabilities) {
                 Capabilities.CapabilitySpecification.Capability.Builder capability = Capabilities.CapabilitySpecification.Capability.newBuilder();
                 capability.setDirection(Capabilities.CapabilitySpecification.Direction.SEND);
                 capability.setTechnicalMessageType(technicalMessageType.trim());
-                parameters.getCapabilities().add(capability.build());
+                capabilities.add(capability.build());
             }
             String[] receivingCapabilities = receivingCapabilitiesAsCsv.split(",");
             for (String technicalMessageType : receivingCapabilities) {
                 Capabilities.CapabilitySpecification.Capability.Builder capability = Capabilities.CapabilitySpecification.Capability.newBuilder();
                 capability.setDirection(Capabilities.CapabilitySpecification.Direction.RECEIVE);
                 capability.setTechnicalMessageType(technicalMessageType.trim());
-                parameters.getCapabilities().add(capability.build());
+                capabilities.add(capability.build());
             }
 
-            ByteString message = capabilitiesMessageContentFactory.message(parameters);
+            if (!capabilities.isEmpty()) {
+                EncodeMessageService encodeMessageService = new EncodeMessageServiceImpl();
+                MessageHeaderParameters messageHeaderParameters = new MessageHeaderParameters();
+                messageHeaderParameters.setTechnicalMessageType(TechnicalMessageType.DKE_CAPABILITIES);
+                messageHeaderParameters.setApplicationMessageSeqNo(getSeqNo());
+                messageHeaderParameters.setApplicationMessageId(MessageIdService.generateMessageId());
+                messageHeaderParameters.setMode(Request.RequestEnvelope.Mode.DIRECT);
 
-            EncodeMessageService encodeMessageService = new EncodeMessageServiceImpl();
-            MessageHeaderParameters messageHeaderParameters = new MessageHeaderParameters();
-            messageHeaderParameters.setTechnicalMessageType(TechnicalMessageType.DKE_CAPABILITIES);
-            messageHeaderParameters.setApplicationMessageSeqNo(this.getSeqNo());
-            messageHeaderParameters.setApplicationMessageId(MessageIdService.generateMessageId());
-            messageHeaderParameters.setMode(Request.RequestEnvelope.Mode.DIRECT);
-            PayloadParameters payloadParameters = new PayloadParameters();
-            payloadParameters.setTypeUrl(Capabilities.CapabilitySpecification.getDescriptor().getFullName());
-            payloadParameters.setValue(message);
-            String encodedMessage = encodeMessageService.encode(messageHeaderParameters, payloadParameters);
+                Capabilities.CapabilitySpecification.Builder builder = Capabilities.CapabilitySpecification.newBuilder();
+                builder.setAppCertificationId(appCertificationId);
+                builder.setAppCertificationVersionId(appCertificationVersionId);
+                builder.setEnablePushNotifications(Boolean.parseBoolean(enablePushNotifications) ? PushNotification.ENABLED : PushNotification.DISABLED);
+                builder.addAllCapabilities(capabilities);
 
-            this.resultPrinter.print(encodedMessage);
+                PayloadParameters payloadParameters = new PayloadParameters();
+                payloadParameters.setTypeUrl(Capabilities.CapabilitySpecification.getDescriptor().getFullName());
+                payloadParameters.setValue(builder.build().toByteString());
+
+                String encodedMessage = encodeMessageService.encode(messageHeaderParameters, payloadParameters);
+
+                resultPrinter.print(encodedMessage);
+            } else {
+                errorPrinter.print("Missing capabilities, please provide capabilities to set.");
+            }
 
         } catch (Exception e) {
-            this.handleException(e);
+            handleException(e);
         }
     }
 

@@ -13,14 +13,14 @@ public class FetchMessageResponseHandler extends InputHandler {
 
     @Override
     public void handle() {
-        String onboardingResponseAsJson = this.readInput("Please paste your onboarding response:");
-        OnboardingResponse onboardingResponse = this.parseOnboardingResponse(onboardingResponseAsJson);
+        String onboardingResponseAsJson = readInput("Please paste your onboarding response:");
+        OnboardingResponse onboardingResponse = parseOnboardingResponse(onboardingResponseAsJson);
         FetchMessageService fetchMessageService = new FetchMessageServiceImpl();
         Optional<List<FetchMessageResponse>> optionalFetchMessageResponses = fetchMessageService.fetch(onboardingResponse, MessageFetcher.MAX_TRIES_BEFORE_FAILURE, MessageFetcher.DEFAULT_INTERVAL);
         if (optionalFetchMessageResponses.isPresent()) {
             List<FetchMessageResponse> fetchMessageResponses = optionalFetchMessageResponses.get();
             for (FetchMessageResponse fetchMessageResponse : fetchMessageResponses) {
-                this.resultPrinter.print(fetchMessageResponse);
+                resultPrinter.print(fetchMessageResponse);
             }
         }
     }

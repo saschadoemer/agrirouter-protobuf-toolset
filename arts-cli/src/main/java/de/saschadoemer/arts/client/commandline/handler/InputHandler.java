@@ -15,11 +15,11 @@ public abstract class InputHandler {
 
     protected final ErrorPrinter errorPrinter;
     protected final ResultPrinter resultPrinter;
-    protected final Logger logger = LogManager.getLogger(this.getClass());
+    protected final Logger logger = LogManager.getLogger(getClass());
 
     public InputHandler() {
-        this.errorPrinter = new ErrorPrinter();
-        this.resultPrinter = new ResultPrinter();
+        errorPrinter = new ErrorPrinter();
+        resultPrinter = new ResultPrinter();
     }
 
     protected String readInput(String message) {
@@ -29,7 +29,7 @@ public abstract class InputHandler {
     }
 
     protected void handleException(Exception e) {
-        this.logger.error(e);
+        logger.error(e);
     }
 
     public int getSeqNo() {

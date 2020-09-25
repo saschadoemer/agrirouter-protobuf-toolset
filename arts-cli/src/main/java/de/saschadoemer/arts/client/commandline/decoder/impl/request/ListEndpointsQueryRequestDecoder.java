@@ -1,18 +1,18 @@
-package de.saschadoemer.arts.client.commandline.decoder.impl;
+package de.saschadoemer.arts.client.commandline.decoder.impl.request;
 
-import agrirouter.response.payload.endpoint.Capability;
+import agrirouter.request.payload.account.Endpoints;
 import com.google.protobuf.Any;
 import com.google.protobuf.InvalidProtocolBufferException;
 import de.saschadoemer.arts.client.commandline.decoder.ContentDecoder;
 
 import java.util.Optional;
 
-public class CapabilityResponseDecoder implements ContentDecoder {
+public class ListEndpointsQueryRequestDecoder implements ContentDecoder {
 
     @Override
     public Optional<Object> decode(Any content) {
         try {
-            return Optional.ofNullable(Capability.CapabilityResponse.parseFrom(content.getValue()));
+            return Optional.ofNullable(Endpoints.ListEndpointsQuery.parseFrom(content.getValue()));
         } catch (InvalidProtocolBufferException e) {
             return Optional.empty();
         }

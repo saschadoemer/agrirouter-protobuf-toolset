@@ -1,4 +1,4 @@
-package de.saschadoemer.arts.client.commandline.decoder.impl;
+package de.saschadoemer.arts.client.commandline.decoder.impl.response;
 
 import com.google.protobuf.Any;
 import de.saschadoemer.arts.client.commandline.decoder.ContentDecoder;

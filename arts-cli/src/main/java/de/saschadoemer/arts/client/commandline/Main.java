@@ -1,9 +1,6 @@
 package de.saschadoemer.arts.client.commandline;
 
-import de.saschadoemer.arts.client.commandline.handler.DecodeResponseHandler;
-import de.saschadoemer.arts.client.commandline.handler.EncodeCapabilitiesHandler;
-import de.saschadoemer.arts.client.commandline.handler.FetchMessageResponseHandler;
-import de.saschadoemer.arts.client.commandline.handler.SendCommandHandler;
+import de.saschadoemer.arts.client.commandline.handler.*;
 
 import java.util.Scanner;
 
@@ -23,18 +20,22 @@ public class Main {
                         exit();
                         break;
                     case 1:
+                        DecodeMessageHandler decodeMessageHandler = new DecodeMessageHandler();
+                        decodeMessageHandler.handle();
+                        break;
+                    case 2:
                         DecodeResponseHandler decodeResponseHandler = new DecodeResponseHandler();
                         decodeResponseHandler.handle();
                         break;
-                    case 2:
+                    case 3:
                         EncodeCapabilitiesHandler encodeCapabilitiesHandler = new EncodeCapabilitiesHandler();
                         encodeCapabilitiesHandler.handle();
                         break;
-                    case 3:
+                    case 4:
                         SendCommandHandler sendCommandHandler = new SendCommandHandler();
                         sendCommandHandler.handle();
                         break;
-                    case 4:
+                    case 5:
                         FetchMessageResponseHandler fetchMessageResponseHandler = new FetchMessageResponseHandler();
                         fetchMessageResponseHandler.handle();
                         break;
@@ -50,7 +51,7 @@ public class Main {
     private static void printWelcomeTitle() {
         System.out.println("************************************************************************************");
         System.out.println("*");
-        System.out.println("* AGRIROUTER TOOLSET / Decoding protobuf messages from the AR.");
+        System.out.println("* AGRIROUTER TOOLSET / Helping developers to access the AR!");
         System.out.println("* AGRIROUTER TOOLSET / Feel free to buy us a coffee [https://buymeacoff.ee/ks0iWGZlR] ;-)");
         System.out.println("*");
         System.out.println("************************************************************************************");
@@ -59,10 +60,11 @@ public class Main {
     private static void printInputOptions() {
         System.out.println("************************************************************************************");
         System.out.println("*");
-        System.out.println("* [1] Decode response from the AR.");
-        System.out.println("* [2] Encode capabilities message.");
-        System.out.println("* [3] Send command to the AR (message without dedicated recipients).");
-        System.out.println("* [4] Fetch messages from outbox.");
+        System.out.println("* [1] Decode Base64 encoded message.");
+        System.out.println("* [2] Decode Base64 encoded response.");
+        System.out.println("* [3] Encode capabilities message.");
+        System.out.println("* [4] Send command to the AR (message without dedicated recipients).");
+        System.out.println("* [5] Fetch messages from outbox.");
         System.out.println("*");
         System.out.println("************************************************************************************");
     }

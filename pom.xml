@@ -33,12 +33,13 @@
         <url>http://github.com/saschadoemer/agrirouter-protobuf-toolset</url>
     </scm>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub DKE-Data Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/DKE-Data/agrirouter-api-java</url>
+        </repository>
+    </repositories>
 
     <modules>
         <module>arts-cli</module>
@@ -46,8 +47,8 @@
 
     <properties>
         <!-- AR -->
-        <agrirouter-api-java-api.version>0.0.1-SNAPSHOT</agrirouter-api-java-api.version>
-        <agrirouter-api-java-convenience.version>0.0.1-SNAPSHOT</agrirouter-api-java-convenience.version>
+        <agrirouter-api-java-api.version>1.2.1</agrirouter-api-java-api.version>
+        <agrirouter-api-java-convenience.version>1.2.1</agrirouter-api-java-convenience.version>
 
         <!-- PLUGINS -->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
@@ -70,6 +71,9 @@
         <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
         <clover-maven-plugin.version>4.2.1</clover-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
+        <jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
+        <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
+        <activation.version>1.0.2</activation.version>
     </properties>
 
     <dependencyManagement>
@@ -80,32 +84,34 @@
                 <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.agrirouter.api.lmis</groupId>
+                <groupId>com.agrirouter.api</groupId>
                 <artifactId>agrirouter-api-java-api</artifactId>
                 <version>${agrirouter-api-java-api.version}</version>
-                <classifier>jdk11</classifier>
             </dependency>
             <dependency>
-                <groupId>com.agrirouter.api.lmis</groupId>
+                <groupId>com.agrirouter.api</groupId>
                 <artifactId>agrirouter-api-java-impl</artifactId>
                 <version>${agrirouter-api-java-api.version}</version>
-                <classifier>jdk11</classifier>
             </dependency>
             <dependency>
-                <groupId>com.agrirouter.api.lmis</groupId>
+                <groupId>com.agrirouter.api</groupId>
                 <artifactId>agrirouter-api-java-convenience</artifactId>
                 <version>${agrirouter-api-java-convenience.version}</version>
-                <classifier>jdk11</classifier>
             </dependency>
             <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>2.3.2</version>
+                <version>${jakarta.xml.bind-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jaxb</groupId>
                 <artifactId>jaxb-runtime</artifactId>
-                <version>2.3.2</version>
+                <version>${jaxb-runtime.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jaxb</groupId>
+                <artifactId>activation</artifactId>
+                <version>${activation.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -116,19 +122,16 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.agrirouter.api.lmis</groupId>
+            <groupId>com.agrirouter.api</groupId>
             <artifactId>agrirouter-api-java-api</artifactId>
-            <classifier>jdk11</classifier>
         </dependency>
         <dependency>
-            <groupId>com.agrirouter.api.lmis</groupId>
+            <groupId>com.agrirouter.api</groupId>
             <artifactId>agrirouter-api-java-impl</artifactId>
-            <classifier>jdk11</classifier>
         </dependency>
         <dependency>
-            <groupId>com.agrirouter.api.lmis</groupId>
+            <groupId>com.agrirouter.api</groupId>
             <artifactId>agrirouter-api-java-convenience</artifactId>
-            <classifier>jdk11</classifier>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
@@ -141,22 +144,8 @@
         <dependency>
             <groupId>jaxb</groupId>
             <artifactId>activation</artifactId>
-            <version>1.0.2</version>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>snapshots-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <build>
         <pluginManagement>
@@ -187,83 +176,7 @@
                     <encoding>${maven-compiler-plugin.encoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging-maven-plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.openclover</groupId>
-                <artifactId>clover-maven-plugin</artifactId>
-                <version>${clover-maven-plugin.version}</version>
-            </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>sign</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>build-extras</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
