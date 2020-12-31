@@ -1,12 +1,5 @@
 # ARTS - The AgriRouter ToolSet
 
-[![Build status for develop](https://travis-ci.com/saschadoemer/agrirouter-protobuf-toolset.svg?branch=develop)](https://travis-ci.com/saschadoemer/agrirouter-protobuf-toolset)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f2f2fb0c18b47b983e2144ff3ebd95c)](https://www.codacy.com/app/cf4thqgxcnxaovouxtnv/agrirouter-protobuf-toolset?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=saschadoemer/agrirouter-protobuf-toolset&amp;utm_campaign=Badge_Grade)
-
-# Current version
-
-Release | [Snapshot](https://oss.sonatype.org/content/repositories/snapshots/de/saschadoemer/)
-
 ## Project description
 
 ### The agrirouter?
