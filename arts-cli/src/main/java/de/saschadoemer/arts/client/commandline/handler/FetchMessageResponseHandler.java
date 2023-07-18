@@ -2,7 +2,7 @@ package de.saschadoemer.arts.client.commandline.handler;
 
 import com.dke.data.agrirouter.api.dto.messaging.FetchMessageResponse;
 import com.dke.data.agrirouter.api.dto.onboard.OnboardingResponse;
-import com.dke.data.agrirouter.api.service.messaging.FetchMessageService;
+import com.dke.data.agrirouter.api.service.messaging.http.FetchMessageService;
 import com.dke.data.agrirouter.impl.messaging.rest.FetchMessageServiceImpl;
 import com.dke.data.agrirouter.impl.messaging.rest.MessageFetcher;
 

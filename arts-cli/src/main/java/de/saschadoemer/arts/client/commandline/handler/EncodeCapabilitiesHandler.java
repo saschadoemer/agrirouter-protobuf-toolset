@@ -4,6 +4,7 @@ import agrirouter.request.Request;
 import agrirouter.request.payload.endpoint.Capabilities;
 import agrirouter.request.payload.endpoint.Capabilities.CapabilitySpecification.PushNotification;
 import com.dke.data.agrirouter.api.enums.TechnicalMessageType;
+import com.dke.data.agrirouter.api.enums.SystemMessageType;
 import com.dke.data.agrirouter.api.service.messaging.encoding.EncodeMessageService;
 import com.dke.data.agrirouter.api.service.parameters.MessageHeaderParameters;
 import com.dke.data.agrirouter.api.service.parameters.PayloadParameters;
@@ -54,7 +55,7 @@ public class EncodeCapabilitiesHandler extends InputHandler {
             if (!capabilities.isEmpty()) {
                 EncodeMessageService encodeMessageService = new EncodeMessageServiceImpl();
                 MessageHeaderParameters messageHeaderParameters = new MessageHeaderParameters();
-                messageHeaderParameters.setTechnicalMessageType(TechnicalMessageType.DKE_CAPABILITIES);
+                messageHeaderParameters.setTechnicalMessageType(SystemMessageType.DKE_CAPABILITIES);
                 messageHeaderParameters.setApplicationMessageSeqNo(getSeqNo());
                 messageHeaderParameters.setApplicationMessageId(MessageIdService.generateMessageId());
                 messageHeaderParameters.setMode(Request.RequestEnvelope.Mode.DIRECT);

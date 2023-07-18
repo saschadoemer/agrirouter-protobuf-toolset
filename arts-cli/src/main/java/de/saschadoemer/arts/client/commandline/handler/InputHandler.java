@@ -4,8 +4,6 @@ import com.dke.data.agrirouter.api.dto.onboard.OnboardingResponse;
 import com.google.gson.Gson;
 import de.saschadoemer.arts.client.commandline.helper.ErrorPrinter;
 import de.saschadoemer.arts.client.commandline.helper.ResultPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
@@ -15,7 +13,6 @@ public abstract class InputHandler {
 
     protected final ErrorPrinter errorPrinter;
     protected final ResultPrinter resultPrinter;
-    protected final Logger logger = LogManager.getLogger(getClass());
 
     public InputHandler() {
         errorPrinter = new ErrorPrinter();
@@ -29,7 +26,7 @@ public abstract class InputHandler {
     }
 
     protected void handleException(Exception e) {
-        logger.error(e);
+        e.printStackTrace(System.out);
     }
 
     public int getSeqNo() {
