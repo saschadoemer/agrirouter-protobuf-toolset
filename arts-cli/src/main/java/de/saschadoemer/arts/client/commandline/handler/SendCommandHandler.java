@@ -26,7 +26,7 @@ public class SendCommandHandler extends InputHandler {
             
             sendMessageService.send(parameters);
         } catch (Exception e) {
-            logger.error(e);
+            e.printStackTrace(System.out);
         }
     }
 
